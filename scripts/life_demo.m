@@ -61,6 +61,7 @@ function [fh, fe] = life_demo()
 % This helps speeding up computations espacially for large conenctomes.
 feOpenLocalCluster;
 
+
 %% Build the file names for the diffusion data, the anatomical MRI.
 dwiFile       = fullfile(lifeDemoDataPath('diffusion'),'life_demo_scan1_subject1_b2000_150dirs_stanford.nii.gz');
 dwiFileRepeat = fullfile(lifeDemoDataPath('diffusion'),'life_demo_scan2_subject1_b2000_150dirs_stanford.nii.gz');
@@ -76,12 +77,16 @@ fgFileName    = fullfile(lifeDemoDataPath('tractography'), ...
 % The final connectome and data astructure will be saved with this name:
 feFileName    = 'life_build_model_demo_CSD_PROB';
 
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Initializing the LiFE model structure','progress', 0), weboptions('MediaType','application/json'));
+
 %% (1.1) Initialize the LiFE model structure, 'fe' in the code below. 
 % This structure contains the forward model of diffusion based on the
 % tractography solution. It also contains all the information necessary to
 % compute model accuracry, and perform statistical tests. You can type
 % help('feBuildModel') in the MatLab prompt for more information.
 fe = feConnectomeInit(dwiFile,fgFileName,feFileName,[],dwiFileRepeat,t1File);
+
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Fitting the model','progress', 0.25), weboptions('MediaType','application/json'));
 
 %% (1.2) Fit the model. 
 % Hereafter we fit the forward model of tracrography using a least-squared
@@ -110,6 +115,8 @@ prob.rrmse  = feGetRep(fe,'vox rmse ratio');
 % fascicle in the connectome.
 prob.w      = feGet(fe,'fiber weights');
 
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Plotting graphs','progress', 0.4), weboptions('MediaType','application/json'));
+
 %% (1.7) Plot a histogram of the RMSE. 
 % We plot the histogram of  RMSE across white-mater voxels.
 [fh(1), ~, ~] = plotHistRMSE(prob);
@@ -121,6 +128,9 @@ prob.w      = feGet(fe,'fiber weights');
 
 %% (1.9) Plot a histogram of the fitted fascicle weights. 
 [fh(3), ~] = plotHistWeights(prob);
+
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Initializing the LiFE model structure (2)','progress', 0.5), weboptions('MediaType','application/json'));
+
 fe = feConnectomeInit(dwiFile,fgFileName,feFileName,[],dwiFileRepeat,t1File);
 
 %% Extract the coordinates of the white-matter voxels
@@ -143,6 +153,7 @@ feFileName    = 'life_build_model_demo_TENSOR_DET';
 % tractography solution. It also contains all the information necessary to
 % compute model accuracry, and perform statistical tests. You can type
 % help('feBuildModel') in the MatLab prompt for more information.
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Initializing the LiFE model structure (3)','progress', 0.7), weboptions('MediaType','application/json'));
 fe = feConnectomeInit(dwiFile,fgFileName,feFileName,[],dwiFileRepeat,t1File);
 
 %% (2.2) Fit the model. 
@@ -171,6 +182,8 @@ det.rrmse  = feGetRep(fe,'vox rmse ratio');
 % The following line shows how to extract the weight assigned to each
 % fascicle in the connectome.
 det.w      = feGet(fe,'fiber weights');
+
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Plotting graphs (2)','progress', 0.8), weboptions('MediaType','application/json'));
 
 %% (2.7) Plot a histogram of the RMSE. 
 % We plot the histogram of  RMSE across white-mater voxels.
@@ -219,6 +232,8 @@ prob.rmse      = prob.rmse( prob.coordsIdx);
 det.rmse       = det.rmse( det.coordsIdx);
 clear p d
 
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Plotting graphs (3)','progress', 0.95), weboptions('MediaType','application/json'));
+
 %% (3.2) Make a scatter plot of the RMSE of the two tractography models
 fh(4) = scatterPlotRMSE(det,prob);
 
@@ -237,6 +252,8 @@ fh(5) = distributionPlotStrengthOfEvidence(se);
 % Plot the distributions of RMSE for the two models and report the Earth
 % Movers Distance between the distributions.
 fh(6) = distributionPlotEarthMoversDistance(se);
+
+webwrite(getenv('SCA_PROGRESS_URL'), struct('msg','Completed','progress', 1), weboptions('MediaType','application/json'));
 
 end
 
