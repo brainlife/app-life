@@ -13,8 +13,8 @@ unset LD_LIBRARY_PATH
 
 #TODO - clean.sh?
 echo "clean up from previous run"
-rm products.json
-rm finished 
+rm -f products.json
+rm -f finished 
 
 #find out which environment we are in
 hostname | grep karst > /dev/null
