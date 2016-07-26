@@ -3,6 +3,8 @@ addpath(getenv('SCA_SERVICE_DIR'))
 addpath(genpath('/N/u/hayashis/Karst/life/vistasoft-master'))
 addpath(genpath('./data'))
 
+disp(pwd)
+
 [ fh, pfe, dfe ] = life_demo(dwiFile, t1File, ptckFileNme, dtckFileName)
 
 saveas(pfe, 'prb_fit_fe.mat')
