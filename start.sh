@@ -57,7 +57,10 @@ unset LD_LIBRARY_PATH
 
 curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $SCA_PROGRESS_URL
 
-cd \$PBS_O_WORKDIR
+if [ ! -z "\$PBS_O_WORKDIR" ]; then
+    echo "resetting cwd"
+    cd \$PBS_O_WORKDIR
+fi
 
 #data might be already staged if user is rerunning this
 #but.. sometime data could get corrupted.. so let's remove it for now.
