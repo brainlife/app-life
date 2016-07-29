@@ -83,7 +83,7 @@ if [ $execenv == "karst" ]; then
 curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $SCA_PROGRESS_URL
 
 module load matlab
-matlab -nodisplay -nosplash < $SCA_SERVICE_DIR/run.m
+matlab -nodisplay -nosplash < $SCA_SERVICE_DIR/runlife.m
 ret=\$?
 #fix LD_LIBRARY_PATH so that curl works
 unset LD_LIBRARY_PATH
@@ -96,7 +96,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab w
 
 module load matlab
 module load ccm
-ccmrun matlab -nodisplay -nosplash < $SCA_SERVICE_DIR/run.m
+ccmrun matlab -nodisplay -nosplash < $SCA_SERVICE_DIR/runlife.m
 ret=\$?
 #fix broken curl due to matlab
 #export LD_LIBRARY_PATH=/usr/lib64/:\$LD_LIBRARY_PATH
