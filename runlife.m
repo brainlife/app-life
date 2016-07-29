@@ -1,5 +1,7 @@
 
-addpath(getenv('SCA_SERVICE_DIR'))
+disp(getenv('SCA_SERVICE_DIR'))
+
+%addpath(getenv('SCA_SERVICE_DIR'))
 addpath(genpath('/N/u/hayashis/Karst/life/vistasoft-master'))
 %addpath(genpath('./data'))
 addpath(genpath(getenv('SCA_SERVICE_DIR')))
