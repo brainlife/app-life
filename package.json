@@ -2,15 +2,14 @@
   "name": "sca-service-life",
   "version": "1.0.0",
   "description": "run life demo application",
-  "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "sca/start.sh",
-    "stop": "sca/stop.sh",
-    "status": "sca/status.sh"
+    "start": "start.sh",
+    "stop": "stop.sh",
+    "status": "status.sh"
   },
   "repository": {
     "type": "git",

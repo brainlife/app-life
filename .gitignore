@@ -1,2 +1,5 @@
 ## Ignore MatLab temporary files ##
 *.m~
+config.json
+barn
+testdata
