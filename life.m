@@ -5,15 +5,19 @@ function [fh, fe, out] = life(config)
 %
 % Franco Pestilli, Indiana University, frakkopesto@gmail.com.
 %
-L = 360; 
 fe = feConnectomeInit(config.diff.dwi, ...
                       config.trac.ptck, ...
                       'temp',[], ...
-                      config.diff.dwi, ...
-                      config.anatomy.t1,L,[1,0]);
+                      [], ...
+                      config.anatomy.t1, ...
+                      config.life_discretization,[1,0]);
 
-Niter = 500;
-fe = feSet(fe,'fit',feFitModel(feGet(fe,'model'),feGet(fe,'dsigdemeaned'),'bbnnls',Niter,'preconditioner'));
+disp('iterations')
+disp(config.num_iterations)
+
+m = feFitModel(feGet(fe,'model'),feGet(fe,'dsigdemeaned'),'bbnnls',config.num_iterations,'preconditioner')
+
+fe = feSet(fe,'fit',m);
                   
 out.w    = feGet(fe,'fiber weights');
 out.rmse = feGetRep(fe,'vox rmse');

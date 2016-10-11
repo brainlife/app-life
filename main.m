@@ -17,10 +17,11 @@ addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 %load my own config.json
 config = loadjson('config.json');
 
-[ fh, fe ] = life(config.diff.dwi, [], config.anatomy.t1, config.trac.ptck, config.trac.dtck)
+[ fh, fe, out ] = life(config)
 
-saveas(pfe, 'prb_fit_fe.mat')
-saveas(dfe, 'dtr_fit_fe.mat')
+save(fe, 'output_fe.mat', '-v7.3');
+savejson('w', out.w, 'fascicle_weight.json');
+savejson('rmse', out.rmse, 'life_error.json');
 
 saveas(fh(0), 'figure0.png') %1-base index?
 saveas(fh(1), 'figure1.png')
