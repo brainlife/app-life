@@ -12,8 +12,9 @@ fe = feConnectomeInit(config.diff.dwi, ...
                       config.diff.dwi, ...
                       config.anatomy.t1,L,[1,0]);
 
-fe = feSet(fe,'fit',feFitModel(feGet(fe,'mfiber'),feGet(fe,'dsigdemeaned'),'bbnnls'));
-
+Niter = 500;
+fe = feSet(fe,'fit',feFitModel(feGet(fe,'model'),feGet(fe,'dsigdemeaned'),'bbnnls',Niter,'preconditioner'));
+                  
 out.w    = feGet(fe,'fiber weights');
 out.rmse = feGetRep(fe,'vox rmse');
 
