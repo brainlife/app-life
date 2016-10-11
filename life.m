@@ -15,13 +15,16 @@ fe = feConnectomeInit(config.diff.dwi, ...
 disp('iterations')
 disp(config.num_iterations)
 
-m = feFitModel(feGet(fe,'model'),feGet(fe,'dsigdemeaned'),'bbnnls',config.num_iterations,'preconditioner')
+Fit = feFitModel(feGet(fe,'model'), ...
+                 feGet(fe,'dsigdemeaned'), ...
+                 'bbnnls', ...
+                 config.num_iterations, ...
+                 'preconditioner');
 
 fe = feSet(fe,'fit',m);
                   
 out.w    = feGet(fe,'fiber weights');
 out.rmse = feGetRep(fe,'vox rmse');
-
 [fh(1), ~, ~] = plotHistRMSE(out);
 [fh(2), ~] = plotHistWeights(out);
 
