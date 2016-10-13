@@ -3,3 +3,9 @@
 config.json
 barn
 testdata
+finished
+jobid
+sca-service-life.e*
+sca-service-life.o*
+task.pbs
+products.json

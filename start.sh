@@ -1,11 +1,17 @@
 #!/bin/bash
 
 #make sure jq is installed on $SCA_SERVICE_DIR
-if [ ! -f $SCA_SERVICE_DIR/jq ];
-then
-        echo "installing jq"
-        wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O $SCA_SERVICE_DIR/jq
-        chmod +x $SCA_SERVICE_DIR/jq
+#if [ ! -f $SCA_SERVICE_DIR/jq ];
+#then
+#        echo "installing jq"
+#        wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 -O $SCA_SERVICE_DIR/jq
+#        chmod +x $SCA_SERVICE_DIR/jq
+#fi
+#
+
+#allows test execution
+if [ -z "$SCA_PROGRESS_URL" ]; then
+    export SCA_PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"
 fi
 
 #patch libssl issue caused by some module overriding libpath
@@ -31,7 +37,7 @@ if [ $execenv == "karst" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=1:00:00
+#PBS -l walltime=0:30:00
 #PBS -N sca-service-life
 #PBS -V
 #Karst
@@ -42,7 +48,7 @@ if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=32:dc2
-#PBS -l walltime=1:00:00
+#PBS -l walltime=0:30:00
 #PBS -l gres=ccm
 #PBS -N lifedemo
 #PBS -V
@@ -62,19 +68,6 @@ if [ ! -z "\$PBS_O_WORKDIR" ]; then
     cd \$PBS_O_WORKDIR
 fi
 
-#data might be already staged if user is rerunning this
-#but.. sometime data could get corrupted.. so let's remove it for now.
-rm -rf data
-
-#if [ ! -d data ]
-#then
-    echo "untarring input data"
-    input_task_id=`$SCA_SERVICE_DIR/jq -r '.input_task_id' config.json`
-    filename=`$SCA_SERVICE_DIR/jq -r '.files[0] .filename' config.json`
-
-    curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"Untarring \$filename\"}" $SCA_PROGRESS_URL
-    tar -xzf ../\$input_task_id/\$filename
-#fi
 EOT
 
 #create pbs script
