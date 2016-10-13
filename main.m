@@ -19,8 +19,10 @@ config = loadjson('config.json');
 [ fh, fe, out ] = life(config);
 
 save('output_fe.mat','fe', '-v7.3');
-savejson('w',    out.w,    'life_fascicle_weights.json');
-savejson('rmse', out.rmse, 'life_error.json');
+savejson('w',    out.life.w,    'life_fascicle_weights.json');
+savejson('rmse', out.life.rmse, 'life_error.json');
+out.life.w = out.life.w';
+out.life.rmse = out.life.rmse';
 savejson('out',  out,      'life_results.json');
 
 for ii = 1:length(fh)

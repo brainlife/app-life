@@ -23,11 +23,11 @@ Fit = feFitModel(feGet(fe,'model'), ...
 
 fe = feSet(fe,'fit',Fit);
                   
-out.w    = feGet(fe,'fiber weights');
-out.rmse = feGet(fe,'vox rmse');
+out.life.w    = feGet(fe,'fiber weights');
+out.life.rmse = feGet(fe,'vox rmse');
 
-% Plot conenctome error
-[y, x]              = hist(out.rmse,40);
+% Plot connectome error
+[y, x]              = hist(out.life.rmse,40);
 out.plot(1).title   = 'Connectome error';
 out.plot(1).x.vals  = x;
 out.plot(1).x.label = 'r.m.s.e. (image intensity)';
@@ -41,7 +41,7 @@ out.plot(1).y.scale = 'linear';
 clear x y
 
 % Plot connectome weights
-[y, x]              = hist(out.w( out.w > 0 ),logspace(-5,-.3,40));
+[y, x]              = hist(out.life.w( out.life.w > 0 ),logspace(-5,-.3,40));
 out.plot(2).title   = 'Connectome fascicels weights';
 out.plot(2).x.vals  = x;
 out.plot(2).x.label = 'r.m.s.e. (image intensity)';
@@ -59,7 +59,6 @@ function [fh, rmse] = plotHistRMSE(info)
 % 
 % Make a plot of the error of LiFE (RMSE)
 %
-rmse   = info.rmse;
 figName = sprintf('Connectome error (RMS in predicting the data)');
 fh      = mrvNewGraphWin(figName);
 plot(info.plot(1).x.vals,info.plot(1).y.vals,'k-');
