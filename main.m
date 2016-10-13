@@ -14,21 +14,17 @@ addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 %addpath(genpath('/N/u/hayashis/BigRed2/git/mba')) %not used by life?
 %addpath(genpath(getenv('SCA_SERVICE_DIR'))) %load life scripts and all
 
-%load my own config.json
+% load my own config.json
 config = loadjson('config.json');
+[ fh, fe, out ] = life(config);
 
-[ fh, fe, out ] = life(config)
-
-save(fe, 'output_fe.mat', '-v7.3');
-savejson('w', out.w, 'fascicle_weight.json');
+save('output_fe.mat','fe', '-v7.3');
+savejson('w',    out.w,    'life_fascicle_weights.json');
 savejson('rmse', out.rmse, 'life_error.json');
+savejson('out',  out,      'life_results.json');
 
-saveas(fh(0), 'figure0.png') %1-base index?
-saveas(fh(1), 'figure1.png')
-saveas(fh(2), 'figure2.png')
-saveas(fh(3), 'figure3.png')
-saveas(fh(4), 'figure4.png')
-saveas(fh(5), 'figure5.png')
-saveas(fh(6), 'figure6.png')
+for ii = 1:length(fh)
+    saveas(fh(ii), sprintf('figure%i.png',ii))
+end
 
 end

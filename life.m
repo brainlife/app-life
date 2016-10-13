@@ -21,45 +21,69 @@ Fit = feFitModel(feGet(fe,'model'), ...
                  config.num_iterations, ...
                  'preconditioner');
 
-fe = feSet(fe,'fit',m);
+fe = feSet(fe,'fit',Fit);
                   
 out.w    = feGet(fe,'fiber weights');
-out.rmse = feGetRep(fe,'vox rmse');
-[fh(1), ~, ~] = plotHistRMSE(out);
-[fh(2), ~] = plotHistWeights(out);
+out.rmse = feGet(fe,'vox rmse');
+
+% Plot conenctome error
+[y, x]              = hist(out.rmse,40);
+out.plot(1).title   = 'Connectome error';
+out.plot(1).x.vals  = x;
+out.plot(1).x.label = 'r.m.s.e. (image intensity)';
+out.plot(1).x.scale = 'log';
+
+out.plot(1).y.vals  = y;
+out.plot(1).y.label = 'Number of voxels';
+out.plot(1).y.scale = 'linear';
+
+[fh(1)]             = plotHistRMSE(out);
+clear x y
+
+% Plot connectome weights
+[y, x]              = hist(out.w( out.w > 0 ),logspace(-5,-.3,40));
+out.plot(2).title   = 'Connectome fascicels weights';
+out.plot(2).x.vals  = x;
+out.plot(2).x.label = 'r.m.s.e. (image intensity)';
+out.plot(2).x.scale = 'log';
+
+out.plot(2).y.vals  = y;
+out.plot(2).y.label = 'Number of fascicles';
+out.plot(2).y.scale = 'linear';
+[fh(2)]             = plotHistWeights(out);
 
 end
 
 % ---------- Local Plot Functions ----------- %
-function [fh, rmse, rmsexv] = plotHistRMSE(info)
+function [fh, rmse] = plotHistRMSE(info)
 % 
 % Make a plot of the error of LiFE (RMSE)
 %
 rmse   = info.rmse;
+figName = sprintf('Connectome error (RMS in predicting the data)');
+fh      = mrvNewGraphWin(figName);
+plot(info.plot(1).x.vals,info.plot(1).y.vals,'k-');
+set(gca,'tickdir','out','fontsize',16,'box','off', ...
+    'xscale',info.plot(1).x.scale, ...
+    'yscale',info.plot(1).y.scale);
+title( info.plot(1).title,'fontsize',12);
+ylabel(info.plot(1).y.label,'fontsize',12);
+xlabel(info.plot(1).x.label,'fontsize',12);
 
-figName = sprintf('%s - RMSE',info.tractography);
-fh = mrvNewGraphWin(figName);
-[y,x] = hist(rmse,50);
-plot(x,y,'k-');
-set(gca,'tickdir','out','fontsize',16,'box','off');
-title('Root-mean squared error distribution across voxels','fontsize',16);
-ylabel('number of voxels','fontsize',16);
-xlabel('rmse (scanner units)','fontsize',16);
 end
 
 function [fh, w] = plotHistWeights(info)
 %
 % Make a plot of the weights of LiFE (fascicles weights):
 %
-w       = info.w;
-figName = sprintf('%s - Distribution of fascicle weights',info.tractography);
+figName = sprintf('Connectome fascicle weights');
 fh      = mrvNewGraphWin(figName);
-[y,x]   = hist(w( w > 0 ),logspace(-5,-.3,40));
-semilogx(x,y,'k-','linewidth',2)
-set(gca,'tickdir','out','fontsize',16,'box','off')
-title( ...
-    sprintf('Number of fascicles candidate connectome: %2.0f\nNumber of fascicles in optimized connetome: %2.0f' ...
-    ,length(w),sum(w > 0)),'fontsize',16)
-ylabel('Number of fascicles','fontsize',16)
-xlabel('Fascicle weight','fontsize',16)
+
+plot(info.plot(2).x.vals,info.plot(2).y.vals,'k-','linewidth',2)
+set(gca,'tickdir','out','fontsize',16,'box','off', ...
+        'yscale', info.plot(2).y.scale, ...
+        'xscale',info.plot(2).x.scale);
+title( info.plot(2).title,   'fontsize',16)
+ylabel(info.plot(2).y.label,'fontsize',16)
+xlabel(info.plot(2).x.label,'fontsize',16)
 end
