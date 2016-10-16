@@ -36,8 +36,8 @@ fi
 if [ $execenv == "karst" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
-#PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=0:30:00
+#PBS -l nodes=1:ppn=1:dc2
+#PBS -l walltime=6:00:00
 #PBS -N sca-service-life
 #PBS -V
 #Karst
@@ -47,8 +47,8 @@ fi
 if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
-#PBS -l nodes=1:ppn=32:dc2
-#PBS -l walltime=0:30:00
+#PBS -l nodes=1:ppn=1:dc2
+#PBS -l walltime=6:00:00
 #PBS -l gres=ccm
 #PBS -N lifedemo
 #PBS -V
