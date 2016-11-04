@@ -39,6 +39,7 @@ fi
 if [ $execenv == "karst" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
+#PBS -q preempt
 #PBS -l nodes=1:ppn=1:dc2
 #PBS -l walltime=6:00:00
 #PBS -N sca-service-life

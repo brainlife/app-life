@@ -16,6 +16,12 @@ addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 
 % load my own config.json
 config = loadjson('config.json');
+
+% update symlink to realpath
+%display(config.diff.dwi)gymnastics
+%[status,config.diff.dwi] = system(sprintf('readlink -f %s', config.diff.dwi));
+%display(config.diff.dwi)
+
 [ fh, fe, out ] = life(config);
 
 save('output_fe.mat','fe', '-v7.3');
