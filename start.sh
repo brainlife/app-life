@@ -41,6 +41,7 @@ if [ $execenv == "karst" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=1:dc2
+#PBS -l vmem=10gb
 #PBS -l walltime=6:00:00
 #PBS -N sca-service-life
 #PBS -V
@@ -52,6 +53,7 @@ if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=1:dc2
+#PBS -l vmem=10gb
 #PBS -l walltime=6:00:00
 #PBS -l gres=ccm
 #PBS -N sca-service-life
