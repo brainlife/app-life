@@ -30,11 +30,15 @@ if [ -f jobid ]; then
         echo "Waiting in the queue"
         eststart=`showstart $jobid | grep start`
         curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"Waiting in the PBS queue : $eststart\"}" $SCA_PROGRESS_URL
-        exit 0 #running!
+        exit 0
     fi
     if [ $jobstate == "R" ]; then
         echo "Running"
-        exit 0 #running!
+        exit 0
+    fi
+    if [ $jobstate == "H" ]; then
+        echo "Job held.. waiting"
+        exit 0 
     fi
 
     #assume failed for all other state
