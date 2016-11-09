@@ -79,12 +79,24 @@ if [ $execenv == "karst" ]; then
     cat <<EOT >> task.pbs
 curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $SCA_PROGRESS_URL
 
+#https://kb.iu.edu/d/bedc
+#module load gnuplot
+#module load collectl
+
+#collectl -F1 -i10:10 -sZl --procfilt u\$UID -f collectl &
+
 module load matlab
 export MATLABPATH=$SCA_SERVICE_DIR
 matlab -nodisplay -nosplash -r main
 ret=\$?
+
 #fix LD_LIBRARY_PATH so that curl works
 unset LD_LIBRARY_PATH
+
+#stop collectl and generate plot
+#collectl_stop.sh
+#collectl_plot.sh collectl* .
+
 EOT
 fi
 

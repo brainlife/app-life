@@ -44,7 +44,7 @@ clear x y
 [y, x]              = hist(out.life.w( out.life.w > 0 ),logspace(-5,-.3,40));
 out.plot(2).title   = 'Connectome fascicels weights';
 out.plot(2).x.vals  = x;
-out.plot(2).x.label = 'r.m.s.e. (image intensity)';
+out.plot(2).x.label = 'beta weight';
 out.plot(2).x.scale = 'log';
 
 out.plot(2).y.vals  = y;
