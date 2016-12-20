@@ -7,7 +7,9 @@ if isempty(getenv('SCA_SERVICE_DIR'))
 end
 
 disp('loading paths')
-addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
+%addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
+%addpath(genpath('/N/u/hayashis/BigRed2/git/encode-openmp')) 
+addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed')) 
 addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
 addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 

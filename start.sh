@@ -41,7 +41,7 @@ if [ $execenv == "karst" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=6:00:00
+#PBS -l walltime=3:00:00
 #PBS -N sca-service-life
 #PBS -V
 #Karst
@@ -52,7 +52,7 @@ if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=6:00:00
+#PBS -l walltime=3:00:00
 #PBS -l gres=ccm
 #PBS -N sca-service-life
 #PBS -V
@@ -84,6 +84,9 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"
 #module load collectl
 
 #collectl -F1 -i10:10 -sZl --procfilt u\$UID -f collectl &
+
+#this doesn't make any difference (for openmp..)
+#export OMP_NUM_THREADS=16
 
 module load matlab
 export MATLABPATH=$SCA_SERVICE_DIR
