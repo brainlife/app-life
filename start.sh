@@ -89,7 +89,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"
 #export OMP_NUM_THREADS=16
 
 module load matlab
-export MATLABPATH=$SCA_SERVICE_DIR
+export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
 matlab -nodisplay -nosplash -r main
 ret=\$?
 
@@ -109,7 +109,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab w
 
 module load matlab
 module load ccm
-export MATLABPATH=$SCA_SERVICE_DIR
+export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
 ccmrun matlab -nodisplay -nosplash -r main
 ret=\$?
 #fix broken curl due to matlab
