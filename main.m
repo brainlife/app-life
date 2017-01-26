@@ -26,6 +26,7 @@ config = loadjson('config.json');
 
 [ fh, fe, out ] = life(config);
 
+fgWrite(out.life.fg, 'output_fg.pdb');
 save('output_fe.mat','fe', '-v7.3');
 savejson('w',    out.life.w,    'life_fascicle_weights.json');
 savejson('rmse', out.life.rmse, 'life_error.json');

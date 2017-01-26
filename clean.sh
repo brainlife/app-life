@@ -14,3 +14,4 @@ rm life_fascicle_weights.json
 rm life_error.json
 rm life_results.json
 rm output_fe.mat
+rm output_fg.pdb

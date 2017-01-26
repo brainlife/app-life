@@ -26,6 +26,11 @@ fe = feSet(fe,'fit',Fit);
 out.life.w    = feGet(fe,'fiber weights');
 out.life.rmse = feGet(fe,'vox rmse');
 
+% Eliminate all the fascicles with 0 weights in the LiFE model solution.
+fg = feGet(fe,'fibers acpc');
+w = feGet(fe,'fiber weights');
+out.life.fg = fgExtract(fg, w > 0, 'keep');
+
 % Plot connectome error
 [y, x]              = hist(out.life.rmse,40);
 out.plot(1).title   = 'Connectome error';
