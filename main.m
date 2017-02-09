@@ -2,27 +2,18 @@
 function [] = main()
 
 if isempty(getenv('SCA_SERVICE_DIR'))
-    disp('setting SCA_SERVICE_DIR to pwd')
     setenv('SCA_SERVICE_DIR', pwd)
 end
 
-disp('loading paths')
-%addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
-%addpath(genpath('/N/u/hayashis/BigRed2/git/encode-openmp')) 
-addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed')) 
-addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
-addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
-
-%addpath(genpath('/N/u/hayashis/BigRed2/git/mba')) %not used by life?
-%addpath(genpath(getenv('SCA_SERVICE_DIR'))) %load life scripts and all
+if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
+    disp('loading karst paths')
+    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
+    addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
+    addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
+end
 
 % load my own config.json
 config = loadjson('config.json');
-
-% update symlink to realpath
-%display(config.diff.dwi)gymnastics
-%[status,config.diff.dwi] = system(sprintf('readlink -f %s', config.diff.dwi));
-%display(config.diff.dwi)
 
 [ fh, fe, out ] = life(config);
 
