@@ -1,0 +1,63 @@
+[![Abcdspec-compliant](https://img.shields.io/badge/ABCD_Spec-v1.0-green.svg)](https://github.com/soichih/abcd-spec)
+
+# brainlife/LiFE
+
+This service Executes LiFE (feConnectomeInit / feFitModel) and output FE structure
+
+## Running 
+
+### Docker
+
+First, create output directory and store your config.json contaning path to your input files (relative to /input)
+
+```bash
+mkdir output
+cat > output/config.json << CONF
+{
+        "anatomy": { "t1": "/input/sub-FP/anatomy/t1.nii.gz" },
+        "trac": { "ptck": "/input/sub-FP/tractography/run01_fliprot_aligned_trilin_csd_lmax10_wm_SD_PROB-NUM01-500000.tck" },
+        "diff": {
+                "dwi": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz",
+                "bvecs": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvecs",
+                "bvals": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvals"
+        },
+        "life_discretization": 360,
+        "num_iterations": 100
+}
+CONF
+```
+
+Then, launch brainlife/life
+
+```bash
+docker run --rm -it \
+	-v /mnt/v1/testdata:/input \
+	-v `pwd`/output:/output \
+	brainlife/life 
+```
+
+### On Command Line
+
+Currently, this service can be launched on IU Karst cluster.
+
+First, create your config.json
+
+```bash
+cat > config.json << CONF
+{
+        "anatomy": { "t1": "/input/sub-FP/anatomy/t1.nii.gz" },
+        "trac": { "ptck": "/input/sub-FP/tractography/run01_fliprot_aligned_trilin_csd_lmax10_wm_SD_PROB-NUM01-500000.tck" },
+        "diff": {
+                "dwi": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz",
+                "bvecs": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvecs",
+                "bvals": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvals"
+        },
+        "life_discretization": 360,
+        "num_iterations": 100
+}
+CONF
+```
+
+Then, execute `start.sh` which will submit a job to PBS queue.
+
+
