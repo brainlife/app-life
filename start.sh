@@ -111,37 +111,8 @@ fi
 
 #rest is about the same for everyone
 cat <<EOT >> task.pbs
-
-if [ \$ret -eq 0 ]
-then
-    status="finished"
-    msg="Successfully ran lifedemo"
-
-    #output products.json (should be part of the life_demo)
-    cat <<EOTP > products.json
-[
-    {
-        "type": "soichih/life/out",
-        "graphs": {
-             "error_distribution": {"filename": "figure1.png", "type": "image/png"},
-             "error_ratio": {"filename": "figure2.png", "type": "image/png"},
-             "fascicles": {"filename": "figure3.png", "type": "image/png"},
-             "heat": {"filename": "figure4.png", "type": "image/png"},
-             "evidence":  {"filename": "figure5.png", "type": "image/png"}
-         }
-    }
-]
-EOTP
-
-else
-    status="failed"
-    msg="lifedemo returned code:\$ret"
-fi
-
-curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"\$status\", \"msg\":\"\$msg\"}" $SCA_PROGRESS_URL
-
 echo \$ret > finished
-exit \$ret #tell pbs the return code?
+exit \$ret
 EOT
 
 jobid=`qsub task.pbs`

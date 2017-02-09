@@ -8,6 +8,7 @@ function [] = main()
 if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
     disp('loading karst paths')
     addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
+    %addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 end
