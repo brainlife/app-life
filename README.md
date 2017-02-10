@@ -32,7 +32,8 @@ Then, launch brainlife/life
 docker run --rm -it \
 	-v /mnt/v1/testdata:/input \
 	-v `pwd`:/output \
-	brainlife/life```
+	brainlife/life
+```
 
 * You have to run this where you have cloned this git repository. Otherwise, update `pwd`/msa to point to where you have cloned the repository.
 * Replace <input directory> to where you have your input files. 
