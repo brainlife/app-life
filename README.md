@@ -2,7 +2,7 @@
 
 # brainlife/LiFE
 
-This service Executes LiFE (feConnectomeInit / feFitModel) and output FE structure
+This service Executes Linear Fascicle Evaluation ([LiFE](https://github.com/brain-life/life-1)) - statistical evaluation for brain fasicles.
 
 ## Running 
 
@@ -63,4 +63,20 @@ CONF
 
 Then, execute `start.sh` which will submit a job to PBS queue.
 
+## Output
 
+The main output will be a file called `output_fe.mat`. This file contains following object.
+
+```
+fe = 
+
+    name: 'temp'
+    type: 'faseval'
+    life: [1x1 struct]
+      fg: [1x1 struct]
+     roi: [1x1 struct]
+    path: [1x1 struct]
+     rep: []
+```
+
+> TODO.. explain this a bit more..
