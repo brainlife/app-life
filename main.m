@@ -18,6 +18,7 @@ config = loadjson('config.json');
 
 [ fh, fe, out ] = life(config);
 
+disp('writing outputs')
 fgWrite(out.life.fg, 'output_fg.pdb');
 save('output_fe.mat','fe', '-v7.3');
 savejson('w',    out.life.w,    'life_fascicle_weights.json');
@@ -28,5 +29,7 @@ savejson('out',  out,      'life_results.json');
 for ii = 1:length(fh)
     saveas(fh(ii), sprintf('figure%i.png',ii))
 end
+
+disp('all done')
 
 end
