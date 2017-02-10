@@ -35,9 +35,8 @@ docker run --rm -it \
 	brainlife/life
 ```
 
-* You have to run this where you have cloned this git repository. Otherwise, update `pwd`/msa to point to where you have cloned the repository.
-* Replace <input directory> to where you have your input files. 
-* You can specify any output directory you'd like to use, but leave `pwd` to use your current directory (you need to store config.json in this directory - the container will read from the workdir which is set to /output)
+* Replace `/mnt/v1/testdata` to where you have your input files. 
+* Replace `pwd` to point to your output directory (if you don't want them to go to your current working directory). If you change this, be sure to move your config.json there also. This container starts up with current directory set to /output.
 
 ### On Command Line
 

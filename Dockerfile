@@ -7,4 +7,4 @@ ADD /msa /msa
 #we want all output to go here (config.json should also go here)
 WORKDIR /output
 
-CMD ["/msa/main"] 
+ENTRYPOINT ["/msa/main"] 
