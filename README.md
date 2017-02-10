@@ -8,11 +8,10 @@ This service Executes LiFE (feConnectomeInit / feFitModel) and output FE structu
 
 ### Docker
 
-First, create output directory and store your config.json contaning path to your input files (relative to /input)
+First, create output directory and store your config.json contaning path to your input files (relative to /input that you are going to specify below)
 
 ```bash
-mkdir output
-cat > output/config.json << CONF
+cat > config.json << CONF
 {
         "anatomy": { "t1": "/input/sub-FP/anatomy/t1.nii.gz" },
         "trac": { "ptck": "/input/sub-FP/tractography/run01_fliprot_aligned_trilin_csd_lmax10_wm_SD_PROB-NUM01-500000.tck" },
@@ -32,9 +31,12 @@ Then, launch brainlife/life
 ```bash
 docker run --rm -it \
 	-v /mnt/v1/testdata:/input \
-	-v `pwd`/output:/output \
-	brainlife/life 
-```
+	-v `pwd`:/output \
+	brainlife/life```
+
+* You have to run this where you have cloned this git repository. Otherwise, update `pwd`/msa to point to where you have cloned the repository.
+* Replace <input directory> to where you have your input files. 
+* You can specify any output directory you'd like to use, but leave `pwd` to use your current directory (you need to store config.json in this directory - the container will read from the workdir which is set to /output)
 
 ### On Command Line
 
