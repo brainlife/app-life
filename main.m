@@ -6,11 +6,18 @@ function [] = main()
 %end
 
 if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
-    disp('loading karst paths')
+    disp('loading karst paths (bigred2)')
     addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
     %addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
+end
+
+if exist('/root/git', 'dir') == 7
+    disp('loading karst paths (jetstream)')
+    addpath(genpath('/root/git/encode-mexed'))
+    addpath(genpath('/root/git/vistasoft'))
+    addpath(genpath('/root/git/jsonlab'))
 end
 
 % load my own config.json
