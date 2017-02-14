@@ -78,4 +78,6 @@ fe =
      rep: []
 ```
 
+`output_fg.pdb` contains all fasicles with >0 weights withtin fg object (fibers)
+
 > TODO.. explain this a bit more..
