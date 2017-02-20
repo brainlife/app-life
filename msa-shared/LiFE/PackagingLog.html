@@ -1,0 +1,91 @@
+<html><meta charset="UTF-8"><pre>
+<font color=blue>mcc -W cpplib:LiFE -T link:lib -d /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing -v /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/main.m -a /gpfs/home/h/a/hayashis/BigRed2/git/encode-mexed/mexfiles </font>
+Compiler version: 6.2 (R2016a)
+
+Dependency analysis by REQUIREMENTS.
+
+[Warning: The name of a shared library should begin with the letters "lib".
+'LiFE' does not.] 
+[Warning: Adding path "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life" to
+Compiler path instance.] 
+Parsing file "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/main.m"
+	(Referenced from: "Compiler Command Line").
+Deleting 9 temporary MEX authorization files.
+Removing: '/tmp/0263aZCuCQl_9786.auth'.
+Removing: '/tmp/0263apsjyWR_9786.auth'.
+Removing: '/tmp/0263aTbR22n_9786.auth'.
+Removing: '/tmp/0263ah7xhbU_9786.auth'.
+Removing: '/tmp/0263abx1xjq_9786.auth'.
+Removing: '/tmp/0263aH4xRrW_9786.auth'.
+Removing: '/tmp/0263ab7HcAs_9786.auth'.
+Removing: '/tmp/0263ajEtAIY_9786.auth'.
+Removing: '/tmp/0263avZRZQu_9786.auth'.
+Generating file "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.h".
+Generating file "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp".
+Generating file "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.exports".
+Generating file "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/readme.txt".
+Executing command: "/gpfs/hps/soft/rhel6/matlab/2016a/bin/mbuild"  -client mbuild -O -v -output "LiFE" -I"/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing" "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp" CXXFLAGS="-fPIC -ansi -pthread" LDEXT=".so" LDTYPE="-shared " -outdir "/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing"Verbose mode is on.
+No MEX options file identified; looking for an implicit selection.
+... Looking for compiler 'g++' ...
+... Executing command 'which g++' ...Yes ('/N/soft/rhel6/gcc/4.9.4/bin/g++').
+... Executing command 'g++ -print-file-name=libstdc++.so' ...Yes ('/N/soft/rhel6/gcc/4.9.4/lib64/libstdc++.so').
+Found installed compiler 'g++'.
+Options file details
+-------------------------------------------------------------------
+	Compiler location: /N/soft/rhel6/gcc/4.9.4/bin/g++
+	Options file: /gpfs/hps/soft/rhel6/matlab/2016a/bin/glnxa64/mexopts/g++_glnxa64.xml
+	CMDLINE1 : /N/soft/rhel6/gcc/4.9.4/bin/g++ -c -D_GNU_SOURCE  -DUNIX -DX11 -DGLNXA64 -DGCC -I/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing  -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/simulink/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include/cpp" -fPIC -ansi -pthread -O -DNDEBUG /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp -o /tmp/mex_66838645556713599_13128/LiFE.o
+	CMDLINE2 : /N/soft/rhel6/gcc/4.9.4/bin/g++ -pthread -Wl,-rpath-link,/gpfs/hps/soft/rhel6/matlab/2016a/bin/glnxa64 -shared -O  /tmp/mex_66838645556713599_13128/LiFE.o   -L"/gpfs/hps/soft/rhel6/matlab/2016a/runtime/glnxa64" -lm -lmwmclmcrrt -o /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.so
+	CXX : /N/soft/rhel6/gcc/4.9.4/bin/g++
+	DEFINES : -D_GNU_SOURCE  -DUNIX -DX11 -DGLNXA64 -DGCC
+	MATLABMEX : 
+	CXXFLAGS : -fPIC -ansi -pthread
+	INCLUDE : -I/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing  -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/simulink/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include/cpp"
+	CXXOPTIMFLAGS : -O -DNDEBUG
+	CXXDEBUGFLAGS : -g
+	LDXX : /N/soft/rhel6/gcc/4.9.4/bin/g++
+	LDFLAGS : -pthread -Wl,-rpath-link,/gpfs/hps/soft/rhel6/matlab/2016a/bin/glnxa64
+	LDTYPE : -shared
+	LINKEXPORT : 
+	LINKLIBS : -L"/gpfs/hps/soft/rhel6/matlab/2016a/runtime/glnxa64" -lm -lmwmclmcrrt
+	LDOPTIMFLAGS : -O
+	LDDEBUGFLAGS : -g
+	OBJEXT : .o
+	LDEXT : .so
+	GCC : /N/soft/rhel6/gcc/4.9.4/bin/g++
+	CPPLIB_DIR : /N/soft/rhel6/gcc/4.9.4/lib64/libstdc++.so
+	MATLABROOT : /gpfs/hps/soft/rhel6/matlab/2016a
+	ARCH : glnxa64
+	SRC : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp
+	OBJ : /tmp/mex_66838645556713599_13128/LiFE.o
+	OBJS : /tmp/mex_66838645556713599_13128/LiFE.o 
+	SRCROOT : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE
+	DEF : /tmp/mex_66838645556713599_13128/LiFE.def
+	EXP : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.exp
+	LIB : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.lib
+	EXE : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.so
+	ILK : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.ilk
+	MANIFEST : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.so.manifest
+	TEMPNAME : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE
+	EXEDIR : /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/
+	EXENAME : LiFE
+	OPTIM : -O -DNDEBUG
+	LINKOPTIM : -O
+-------------------------------------------------------------------
+Building with 'g++'.
+Warning: You are using gcc version '4.9.4'. The version of gcc is not supported. The version currently supported with MEX is '4.7.x'. For a list of currently supported compilers see: http://www.mathworks.com/support/compilers/current_release.
+/N/soft/rhel6/gcc/4.9.4/bin/g++ -c -D_GNU_SOURCE  -DUNIX -DX11 -DGLNXA64 -DGCC -I/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing  -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/simulink/include" -I"/gpfs/hps/soft/rhel6/matlab/2016a/extern/include/cpp" -fPIC -ansi -pthread -O -DNDEBUG /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp -o /tmp/mex_66838645556713599_13128/LiFE.o
+<font color=red>In file included from /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp:12:0:</font>
+<font color=red>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.h:111:48: error: ‘::main’ must return ‘int’</font>
+<font color=red> extern LIB_LiFE_CPP_API void MW_CALL_CONV main();</font>
+<font color=red>                                                ^</font>
+<font color=red>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.cpp:119:24: error: ‘::main’ must return ‘int’</font>
+<font color=red> void MW_CALL_CONV main()</font>
+<font color=red>                        ^</font>
+<font color=red></font>
+<font color=blue>Packaging...</font>
+Creating the bundle...
+Web based installer created at /gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_redistribution/MyAppInstaller_web.install.
+Packaging complete.
+Elapsed packaging time was: 11 minutes and 59 seconds.
+</pre></html>

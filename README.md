@@ -81,3 +81,9 @@ fe =
 `output_fg.pdb` contains all fasicles with >0 weights withtin fg object (fibers)
 
 > TODO.. explain this a bit more..
+
+## Shared Library
+
+Content under /msa-shared can be used to run LiFE as part of another application. It is created by compiling LiFE using `libraryCompiler`
+> https://www.mathworks.com/help/compiler_sdk/gs/create-a-cc-application-with-matlab-code.html
+
