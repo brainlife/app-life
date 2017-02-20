@@ -1,17 +1,17 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration file="/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE.prj" location="/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder" name="LiFE" target="target.ezdeploy.library" target-name="Library Compiler">
+  <configuration build-checksum="3648325862" file="/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/msa-shared/LiFE.prj" location="/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/msa-shared" name="LiFE" preferred-package-location="/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_redistribution" preferred-package-type="package.type.install" target="target.ezdeploy.library" target-name="Library Compiler">
     <param.appname>LiFE</param.appname>
     <param.icon />
     <param.icons />
     <param.version>1.0</param.version>
     <param.authnamewatermark>Franco Pestilli</param.authnamewatermark>
     <param.email>frakkopesto@gmail.com</param.email>
-    <param.company />
+    <param.company>Indiana University</param.company>
     <param.summary />
     <param.description />
     <param.screenshot />
     <param.guid />
-    <param.installpath.string>/LiFE/</param.installpath.string>
+    <param.installpath.string>/Indiana_University/LiFE/</param.installpath.string>
     <param.installpath.combo>option.installpath.user</param.installpath.combo>
     <param.logo />
     <param.install.notes>In the following directions, replace MCR_ROOT by the directory where the MATLAB Runtime is installed on the target machine.
@@ -73,7 +73,6 @@
       <param.icon />
       <param.icons />
       <param.version />
-      <param.company />
       <param.summary />
       <param.description />
       <param.screenshot />
@@ -116,11 +115,37 @@
       <param.net.saved.interface />
     </unset>
     <fileset.exports>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feBuildDictionaries.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feClipFibersToVolume.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectionVLSOE.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeEncoding.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeInit.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeSetDwi.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeStatistics.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feCreate.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feFiberNetworkStats.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feGet.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feGetRep.m</file>
+      <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feSet.m</file>
+      <file>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/life.m</file>
       <file>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/main.m</file>
     </fileset.exports>
     <fileset.classes>
       <entity.package name="">
         <entity.class name="Class1">
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feBuildDictionaries.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feClipFibersToVolume.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectionVLSOE.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeEncoding.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeInit.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeSetDwi.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feConnectomeStatistics.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feCreate.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feFiberNetworkStats.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feGet.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feGetRep.m</file>
+          <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode/life/fe/feSet.m</file>
+          <file>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/life.m</file>
           <file>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/main.m</file>
         </entity.class>
       </entity.package>
@@ -164,12 +189,6 @@
       <file>/N/u/hayashis/BigRed2/git/encode-mexed/mexfiles/Mtransp_times_b.m</file>
       <file>/N/u/hayashis/BigRed2/git/encode-mexed/mexfiles/Mtransp_times_b.mexa64</file>
       <file>/N/u/hayashis/BigRed2/git/encode-mexed/mexfiles/compute_diag.mexa64</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/jsonopt.m</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/loadjson.m</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/mergestruct.m</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/savejson.m</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/struct2jdata.m</file>
-      <file>/N/u/hayashis/BigRed2/git/jsonlab/varargin2struct.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/external/camino/dtiLoadBfloatPaths.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/external/iset/ieNotDefined.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/external/pyrTools/myUiGetFile.m</file>
@@ -181,9 +200,6 @@
       <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/nifti/niftiRead.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/quench/dtiLoadMetrotracPathsFromStr.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/quench/dtiLoadMetrotracPathsFromStrVer3.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/quench/fiberToStr.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/quench/fiberToStr3.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/fileFilters/quench/saveStatisticsHeaderToString.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrAnatomy/Talairach/mrAnatAcpc2Tal.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrAnatomy/Talairach/mrAnatGetTalairachDists.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrAnatomy/Talairach/mrAnatGetTalairachScalesFromMask.m</file>
@@ -208,18 +224,12 @@
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/fg/fgGet.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/fg/fgRead.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/fg/fgSet.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/fg/fgWrite.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/mtrPathwayDatabase.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/mtrExportFibers.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/mtrImportFibers.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/mtrPathwayStruct.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/mtrReadCaminoPathwayFromStream.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/file/dt6/dtiGetSubjDirInDT6.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/file/dt6/dtiLoadDt6.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/file/dt6/dtiLoadDt6Info.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/file/fibers/dtiWriteFiberGroup.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/file/tensors/dtiLoadTensorsFromNifti.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/plot/tubeplot.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/roi/dtiNewRoi.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/src/dtiSplitTensor.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/src/dtiSplitTensor.mexa64</file>
@@ -229,7 +239,6 @@
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/tensor/dtiEig.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/tensor/dtiGetValFromTensors.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/utils/dtiGuessDiffusivityUnits.m</file>
-      <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/utils/frenet.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/mrDiffusion/xform/dtiXformFiberCoords.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/utilities/mrVarargin.m</file>
       <file>/N/u/hayashis/BigRed2/git/vistasoft/utilities/mrvParamFormat.m</file>
@@ -383,30 +392,12 @@
       <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode-mexed/external/tensor_toolbox_2.5/@tensor/uminus.m</file>
       <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode-mexed/external/tensor_toolbox_2.5/@tensor/uplus.m</file>
       <file>/gpfs/home/h/a/hayashis/BigRed2/git/encode-mexed/external/tensor_toolbox_2.5/@tensor/xor.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/addStatistic.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/addStatisticHeader.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/filterPathways.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/getAlgorithmsHeaderSize.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/getAlgorithmsHeaderSizeWordAligned.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/getHeaderSize.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/getStatisticsHeaderSize.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/getStatisticsHeaderSizeWordAligned.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/loadDatabase.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/loadStatisticsHeader.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/mtrPathwayDatabase.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/plot.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/saveDatabase.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/saveStatisticsHeader.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/set.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/subsasgn.m</file>
-      <file>/gpfs/home/h/a/hayashis/BigRed2/git/vistasoft/mrDiffusion/fiber/tractography/contrack/metrotrac/@mtrPathwayDatabase/subsref.m</file>
-      <file>/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/life.m</file>
     </fileset.depfun>
     <fileset.package />
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="LiFE.h" optional="false">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.h</file>
-      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="LiFE.so" optional="false">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/LiFE.so</file>
-      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="readme.txt" optional="true">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/NewFolder/LiFE/for_testing/readme.txt</file>
+      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="LiFE.h" optional="false">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/msa-shared/LiFE/for_testing/LiFE.h</file>
+      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="LiFE.so" optional="false">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/msa-shared/LiFE/for_testing/LiFE.so</file>
+      <file location="${PROJECT_ROOT}/LiFE/for_testing" name="readme.txt" optional="true">/gpfs/home/h/a/hayashis/Karst/git/sca-service-life/msa-shared/LiFE/for_testing/readme.txt</file>
     </build-deliverables>
     <workflow />
     <matlab>
