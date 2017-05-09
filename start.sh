@@ -82,7 +82,6 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"
 module load matlab
 export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
 matlab -nodisplay -nosplash -r main
-ret=\$?
 
 #fix LD_LIBRARY_PATH so that curl works
 unset LD_LIBRARY_PATH
@@ -102,7 +101,7 @@ module load matlab
 module load ccm
 export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
 ccmrun matlab -nodisplay -nosplash -r main
-ret=\$?
+
 #fix broken curl due to matlab
 #export LD_LIBRARY_PATH=/usr/lib64/:\$LD_LIBRARY_PATH
 unset LD_LIBRARY_PATH
@@ -111,8 +110,16 @@ fi
 
 #rest is about the same for everyone
 cat <<EOT >> task.pbs
-echo \$ret > finished
-exit \$ret
+
+#check for output files
+if [ -s output_fe.mat ];
+then
+	echo 0 > finished
+else
+	echo "output_fe.mat missing"
+	echo 1 > finished
+	exit 1
+fi
 EOT
 
 jobid=`qsub task.pbs`
