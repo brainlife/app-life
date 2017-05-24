@@ -3,7 +3,7 @@ FROM brainlife/mcr:R2016a
 MAINTAINER Soichi Hayashi <hayashis@iu.edu>
 
 #for openmp
-RUN yum -y install libgomp 
+RUN apt update && apt -y install libgomp1
 
 ADD /msa /msa
 
