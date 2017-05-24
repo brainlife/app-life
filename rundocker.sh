@@ -1,5 +1,5 @@
 
 docker run --rm -it \
-	-v /mnt/v1/testdata:/input \
+	-v /mnt/auto/home/Karst/testdata/sca-service-life:/input \
 	-v `pwd`:/output \
 	brainlife/life
