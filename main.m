@@ -1,10 +1,6 @@
 
 function [] = main()
 
-%if isempty(getenv('SCA_SERVICE_DIR'))
-%    setenv('SCA_SERVICE_DIR', pwd)
-%end
-
 if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
     disp('loading paths (HPC)')
     addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
