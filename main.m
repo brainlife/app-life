@@ -6,22 +6,22 @@ function [] = main()
 %end
 
 if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
-    disp('loading karst paths (bigred2)')
-    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
+    disp('loading paths (HPC)')
+    addpath(genpath('/N/'))
     %addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 end
 
-if exist('/root/git', 'dir') == 7
-    disp('loading karst paths (jetstream)')
-    addpath(genpath('/root/git/encode-mexed'))
-    addpath(genpath('/root/git/vistasoft'))
-    addpath(genpath('/root/git/jsonlab'))
+if exist('/home/hayashis/git', 'dir') == 7
+    disp('loading paths (VM)')
+    addpath(genpath('/home/hayashis/git/encode-mexed'))
+    addpath(genpath('/home/hayashis/git/vistasoft'))
+    addpath(genpath('/home/hayashis/git/jsonlab'))
 end
 
 % load my own config.json
-config = loadjson('config.json');
+config = loadjson('config.json')
 
 [ fe, out ] = life(config);
 
