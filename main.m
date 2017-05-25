@@ -7,8 +7,7 @@ function [] = main()
 
 if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
     disp('loading paths (HPC)')
-    addpath(genpath('/N/'))
-    %addpath(genpath('/N/u/hayashis/BigRed2/git/encode'))
+    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 end
@@ -27,16 +26,15 @@ config = loadjson('config.json')
 
 disp('writing outputs')
 save('output_fe.mat','fe', '-v7.3');
+
+%I am not sure if we really need to do save this?
 fgWrite(out.life.fg, 'output_fg.pdb');
+
 %savejson('w',    out.life.w,    'life_fascicle_weights.json');
 %savejson('rmse', out.life.rmse, 'life_error.json');
 
 out.life = [];
 savejson('out',  out,      'life_results.json');
-
-%for ii = 1:length(fh)
-%    saveas(fh(ii), sprintf('figure%i.png',ii))
-%end
 
 disp('all done')
 
