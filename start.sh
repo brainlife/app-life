@@ -56,7 +56,7 @@ cat <<EOT >> task.pbs
 #fixing .module sometimes causes curl / git to fail
 unset LD_LIBRARY_PATH
 
-curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $SCA_PROGRESS_URL
 
 if [ ! -z "\$PBS_O_WORKDIR" ]; then
     echo "resetting cwd"
@@ -68,7 +68,7 @@ EOT
 #create pbs script
 if [ $execenv == "karst" ]; then
     cat <<EOT >> task.pbs
-curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $SCA_PROGRESS_URL
 
 #https://kb.iu.edu/d/bedc
 #module load gnuplot
@@ -95,7 +95,7 @@ fi
 
 if [ $execenv == "bigred" ]; then
     cat <<EOT >> task.pbs
-curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab with ccmrun\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab with ccmrun\"}" $SCA_PROGRESS_URL
 
 module load matlab
 module load ccm
@@ -124,5 +124,5 @@ EOT
 
 jobid=`qsub task.pbs`
 echo $jobid > jobid
-curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"waiting\", \"progress\": 0, \"msg\":\"Job: $jobid Waiting in PBS queue on $execenv\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"waiting\", \"progress\": 0, \"msg\":\"Job: $jobid Waiting in PBS queue on $execenv\"}" $SCA_PROGRESS_URL
 
