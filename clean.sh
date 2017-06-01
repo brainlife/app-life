@@ -1,4 +1,4 @@
-rm sca-service-life.*
+rm app-life.*
 rm finished
 rm jobid*
 rm final_jobid

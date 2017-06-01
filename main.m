@@ -1,14 +1,15 @@
 
 function [] = main()
 
-if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
+%if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
+%if exist('/home/hayashis/git', 'dir') == 7
+switch getenv('ENV')
+case 'IUHPC'
     disp('loading paths (HPC)')
     addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
-end
-
-if exist('/home/hayashis/git', 'dir') == 7
+case 'VM'
     disp('loading paths (VM)')
     addpath(genpath('/home/hayashis/git/encode-mexed'))
     addpath(genpath('/home/hayashis/git/vistasoft'))

@@ -3,6 +3,7 @@
 #allows test execution
 if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 if [ -z $PROGRESS_URL ]; then export PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"; fi
+if [ -z $ENV ]; then export ENV=IUHPC; fi
 
 #patch libssl issue caused by some module overriding libpath
 unset LD_LIBRARY_PATH
@@ -54,7 +55,10 @@ if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+
+##normally, it should take about 3 hours but lindsey says it takes about 8 hours on HCP data
+#PBS -l walltime=9:00:00
+
 #PBS -l gres=ccm
 #PBS -N app-life
 #PBS -V
