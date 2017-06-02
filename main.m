@@ -25,12 +25,14 @@ disp('writing outputs')
 save('output_fe.mat','fe', '-v7.3');
 
 %I am not sure if we really need to do save this?
-fgWrite(out.life.fg, 'output_fg.pdb');
+%fgWrite(out.life.fg, 'output_fg.pdb');
 
 %savejson('w',    out.life.w,    'life_fascicle_weights.json');
 %savejson('rmse', out.life.rmse, 'life_error.json');
 
 out.life = [];
+
+%used to visualize result on web
 savejson('out',  out,      'life_results.json');
 
 disp('all done')
