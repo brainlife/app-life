@@ -1,12 +1,9 @@
 #!/bin/bash
 
 #allows test execution
-if [ -z $SCA_SERVICE_DIR ]; then
-    export SCA_SERVICE_DIR=`pwd`
-fi
-if [ -z "$SCA_PROGRESS_URL" ]; then
-    export SCA_PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"
-fi
+if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
+if [ -z $PROGRESS_URL ]; then export PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"; fi
+if [ -z $ENV ]; then export ENV=IUHPC; fi
 
 #patch libssl issue caused by some module overriding libpath
 unset LD_LIBRARY_PATH
@@ -25,7 +22,10 @@ echo $HOME | grep -i bigred > /dev/null
 if [ $? -eq 0 ]; then
     execenv=bigred
 fi
-
+echo $HOME | grep -i carbonate > /dev/null
+if [ $? -eq 0 ]; then
+    execenv=carbonate
+fi
 #create pbs script
 if [ $execenv == "karst" ]; then
     cat <<EOT > task.pbs
@@ -33,7 +33,19 @@ if [ $execenv == "karst" ]; then
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16:dc2
 #PBS -l walltime=3:00:00
-#PBS -N sca-service-life
+#PBS -N app-life
+#PBS -V
+#Karst
+EOT
+fi
+
+if [ $execenv == "carbonate" ]; then
+    cat <<EOT > task.pbs
+#!/bin/bash
+##PBS -q preempt
+#PBS -l nodes=1:ppn=16
+#PBS -l walltime=3:00:00
+#PBS -N app-life
 #PBS -V
 #Karst
 EOT
@@ -43,9 +55,12 @@ if [ $execenv == "bigred" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+
+##normally, it should take about 3 hours but lindsey says it takes about 8 hours on HCP data
+#PBS -l walltime=9:00:00
+
 #PBS -l gres=ccm
-#PBS -N sca-service-life
+#PBS -N app-life
 #PBS -V
 #BigRed2
 EOT
@@ -56,7 +71,7 @@ cat <<EOT >> task.pbs
 #fixing .module sometimes causes curl / git to fail
 unset LD_LIBRARY_PATH
 
-curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $PROGRESS_URL
 
 if [ ! -z "\$PBS_O_WORKDIR" ]; then
     echo "resetting cwd"
@@ -68,7 +83,7 @@ EOT
 #create pbs script
 if [ $execenv == "karst" ]; then
     cat <<EOT >> task.pbs
-curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $PROGRESS_URL
 
 #https://kb.iu.edu/d/bedc
 #module load gnuplot
@@ -80,7 +95,7 @@ curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"
 #export OMP_NUM_THREADS=16
 
 module load matlab
-export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
+export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 matlab -nodisplay -nosplash -r main
 
 #fix LD_LIBRARY_PATH so that curl works
@@ -95,11 +110,11 @@ fi
 
 if [ $execenv == "bigred" ]; then
     cat <<EOT >> task.pbs
-curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab with ccmrun\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab with ccmrun\"}" $PROGRESS_URL
 
 module load matlab
 module load ccm
-export MATLABPATH=$MATLABPATH:$SCA_SERVICE_DIR
+export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 ccmrun matlab -nodisplay -nosplash -r main
 
 #fix broken curl due to matlab
@@ -124,5 +139,5 @@ EOT
 
 jobid=`qsub task.pbs`
 echo $jobid > jobid
-curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"waiting\", \"progress\": 0, \"msg\":\"Job: $jobid Waiting in PBS queue on $execenv\"}" $SCA_PROGRESS_URL
+#curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"waiting\", \"progress\": 0, \"msg\":\"Job: $jobid Waiting in PBS queue on $execenv\"}" $PROGRESS_URL
 
