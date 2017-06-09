@@ -1,8 +1,6 @@
 
 function [] = main()
 
-%if exist('/N/u/hayashis/BigRed2/git', 'dir') == 7
-%if exist('/home/hayashis/git', 'dir') == 7
 switch getenv('ENV')
 case 'IUHPC'
     disp('loading paths (HPC)')
@@ -11,9 +9,9 @@ case 'IUHPC'
     addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
 case 'VM'
     disp('loading paths (VM)')
-    addpath(genpath('/home/hayashis/git/encode-mexed'))
-    addpath(genpath('/home/hayashis/git/vistasoft'))
-    addpath(genpath('/home/hayashis/git/jsonlab'))
+    addpath(genpath('/usr/local/encode-mexed'))
+    addpath(genpath('/usr/local/vistasoft'))
+    addpath(genpath('/usr/local/jsonlab'))
 end
 
 % load my own config.json
@@ -23,12 +21,6 @@ config = loadjson('config.json')
 
 disp('writing outputs')
 save('output_fe.mat','fe', '-v7.3');
-
-%I am not sure if we really need to do save this?
-%fgWrite(out.life.fg, 'output_fg.pdb');
-
-%savejson('w',    out.life.w,    'life_fascicle_weights.json');
-%savejson('rmse', out.life.rmse, 'life_error.json');
 
 out.life = [];
 
