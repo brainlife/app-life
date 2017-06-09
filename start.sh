@@ -2,7 +2,6 @@
 
 #allows test execution
 if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
-if [ -z $PROGRESS_URL ]; then export PROGRESS_URL="https://soichi7.ppa.iu.edu/api/progress/status/_sca.test"; fi
 if [ -z $ENV ]; then export ENV=IUHPC; fi
 
 #patch libssl issue caused by some module overriding libpath
@@ -68,11 +67,6 @@ fi
 
 cat <<EOT >> task.pbs
 
-#fixing .module sometimes causes curl / git to fail
-unset LD_LIBRARY_PATH
-
-#curl -X POST -H "Content-Type: application/json" -d "{\"progress\": 0, \"status\": \"running\"}" $PROGRESS_URL
-
 if [ ! -z "\$PBS_O_WORKDIR" ]; then
     echo "resetting cwd"
     cd \$PBS_O_WORKDIR
@@ -83,7 +77,6 @@ EOT
 #create pbs script
 if [ $execenv == "karst" ]; then
     cat <<EOT >> task.pbs
-#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab\"}" $PROGRESS_URL
 
 #https://kb.iu.edu/d/bedc
 #module load gnuplot
@@ -110,7 +103,6 @@ fi
 
 if [ $execenv == "bigred" ]; then
     cat <<EOT >> task.pbs
-#curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"running matlab with ccmrun\"}" $PROGRESS_URL
 
 module load matlab
 module load ccm
@@ -139,5 +131,3 @@ EOT
 
 jobid=`qsub task.pbs`
 echo $jobid > jobid
-#curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"waiting\", \"progress\": 0, \"msg\":\"Job: $jobid Waiting in PBS queue on $execenv\"}" $PROGRESS_URL
-
