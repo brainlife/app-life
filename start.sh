@@ -5,7 +5,7 @@ if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 if [ -z $ENV ]; then export ENV=IUHPC; fi
 
 #patch libssl issue caused by some module overriding libpath
-unset LD_LIBRARY_PATH
+#unset LD_LIBRARY_PATH
 
 #TODO - clean.sh?
 echo "clean up from previous run"
