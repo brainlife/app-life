@@ -89,7 +89,7 @@ if [ $execenv == "karst" ]; then
 
 module load matlab
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
-matlab -nodisplay -nosplash -r main
+time matlab -nodisplay -nosplash -r main
 
 #fix LD_LIBRARY_PATH so that curl works
 unset LD_LIBRARY_PATH
