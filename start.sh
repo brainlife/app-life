@@ -60,6 +60,7 @@ if [ $execenv == "bigred" ]; then
 
 #PBS -l gres=ccm
 #PBS -N app-life
+#PBS -m abe
 #PBS -V
 #BigRed2
 EOT
@@ -87,7 +88,7 @@ if [ $execenv == "karst" ]; then
 #this doesn't make any difference (for openmp..)
 #export OMP_NUM_THREADS=16
 
-module load matlab
+module load matlab/2016a
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 time matlab -nodisplay -nosplash -r main
 
@@ -104,7 +105,7 @@ fi
 if [ $execenv == "bigred" ]; then
     cat <<EOT >> task.pbs
 
-module load matlab
+module load matlab/2016a
 module load ccm
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 ccmrun matlab -nodisplay -nosplash -r main
