@@ -13,20 +13,21 @@ rm -f products.json
 rm -f finished 
 
 #find out which environment we are in
-hostname | grep karst > /dev/null
-if [ $? -eq 0 ]; then
-    execenv=karst 
-fi
-echo $HOME | grep -i bigred > /dev/null
-if [ $? -eq 0 ]; then
-    execenv=bigred
-fi
-echo $HOME | grep -i carbonate > /dev/null
-if [ $? -eq 0 ]; then
-    execenv=carbonate
-fi
+#hostname | grep karst > /dev/null
+#if [ $? -eq 0 ]; then
+#    execenv=karst 
+#fi
+#echo $HOME | grep -i bigred > /dev/null
+#if [ $? -eq 0 ]; then
+#    execenv=bigred
+#fi
+#echo $HOME | grep -i carbonate > /dev/null
+#if [ $? -eq 0 ]; then
+#    execenv=carbonate
+#fi
+
 #create pbs script
-if [ $execenv == "karst" ]; then
+if [ $HPC == "KARST" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 ##PBS -q preempt
@@ -34,11 +35,10 @@ if [ $execenv == "karst" ]; then
 #PBS -l walltime=3:00:00
 #PBS -N app-life
 #PBS -V
-#Karst
 EOT
 fi
 
-if [ $execenv == "carbonate" ]; then
+if [ $HPC == "CARBONATE" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 ##PBS -q preempt
@@ -46,11 +46,10 @@ if [ $execenv == "carbonate" ]; then
 #PBS -l walltime=3:00:00
 #PBS -N app-life
 #PBS -V
-#Karst
 EOT
 fi
 
-if [ $execenv == "bigred" ]; then
+if [ $HPC == "BIGRED2" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
@@ -62,7 +61,6 @@ if [ $execenv == "bigred" ]; then
 #PBS -N app-life
 #PBS -m abe
 #PBS -V
-#BigRed2
 EOT
 fi
 
@@ -76,35 +74,27 @@ fi
 EOT
 
 #create pbs script
-if [ $execenv == "karst" ]; then
+if [ $HPC == "KARST" ]; then
     cat <<EOT >> task.pbs
-
-#https://kb.iu.edu/d/bedc
-#module load gnuplot
-#module load collectl
-
-#collectl -F1 -i10:10 -sZl --procfilt u\$UID -f collectl &
-
-#this doesn't make any difference (for openmp..)
-#export OMP_NUM_THREADS=16
-
+#export OMP_NUM_THREADS=16 #this doesn't make any difference (for openmp..)
 module load matlab/2016a
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 time matlab -nodisplay -nosplash -r main
-
-#fix LD_LIBRARY_PATH so that curl works
-unset LD_LIBRARY_PATH
-
-#stop collectl and generate plot
-#collectl_stop.sh
-#collectl_plot.sh collectl* .
-
 EOT
 fi
 
-if [ $execenv == "bigred" ]; then
+#create pbs script
+if [ $HPC == "CARBONATE" ]; then
     cat <<EOT >> task.pbs
+#export OMP_NUM_THREADS=16 #this doesn't make any difference (for openmp..)
+module load matlab/2016a
+export MATLABPATH=$MATLABPATH:$SERVICE_DIR
+time matlab -nodisplay -nosplash -r main
+EOT
+fi
 
+if [ $HPC == "BIGRED2" ]; then
+    cat <<EOT >> task.pbs
 module load matlab/2016a
 module load ccm
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
