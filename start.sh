@@ -87,7 +87,7 @@ fi
 if [ $HPC == "CARBONATE" ]; then
     cat <<EOT >> task.pbs
 #export OMP_NUM_THREADS=16 #this doesn't make any difference (for openmp..)
-module load matlab/2016a
+module load matlab
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 time matlab -nodisplay -nosplash -r main
 EOT
