@@ -12,7 +12,7 @@ rm -f finished
 ## Run as docker container on VM
 ## 
 
-if [ $ENV == "VM" ]; then
+if [ $ENV == "SINGULARITY" ]; then
     nohup bash _run.sh > stdout.log 2> stderr.log &
     echo $! > pid
     
