@@ -102,22 +102,17 @@ module load matlab/2016a
 module load ccm
 export MATLABPATH=$MATLABPATH:$SERVICE_DIR
 ccmrun matlab -nodisplay -nosplash -r main
-
-#fix broken curl due to matlab
-#export LD_LIBRARY_PATH=/usr/lib64/:\$LD_LIBRARY_PATH
-unset LD_LIBRARY_PATH
 EOT
 fi
 
 #rest is about the same for everyone
 cat <<EOT >> task.pbs
 
-#check for output files
-if [ -s output_fe.mat ];
+if [ -f finished ];
 then
-	echo 0 > finished
+	exit $(cat finished)
 else
-	echo "output_fe.mat missing"
+	echo "matlab failed"
 	echo 1 > finished
 	exit 1
 fi
