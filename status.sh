@@ -3,9 +3,7 @@
 #return code 0 = running
 #return code 1 = finished successfully
 #return code 2 = failed
-
-##now wait for running to go away
-#progress_url={$PROGRESS_URL}/{$PROGRESS_KEY}
+#return code 3 = unknown
 
 if [ -f finished ]; then
     code=`cat finished`
@@ -17,11 +15,6 @@ if [ -f finished ]; then
         exit 2 #failed
     fi
 fi
-
-#if [ -f started ]; then
-#    echo "running"
-#    exit 0 #running!
-#fi
 
 if [ -f jobid ]; then
     jobid=`cat jobid`
@@ -50,11 +43,13 @@ if [ -f jobid ]; then
     exit 2
 fi
 
+if [ -f pid ]; then
+    #echo "assume to be running locally"
+    tail -1 stdout.log
+    exit 0
+fi
+
 echo "can't determine the status!"
 exit 3
 
-#echo "running.job.id is gone.. job must have finished"
-#code=`cat exit.code`
-#curl -X POST -H "Content-Type: application/json" -d "{\"status\": \"finished\", \"msg\":\"lifedemo ended with code:$code\"}" $progress_url
-#echo "job finished with code $code"
-#exit $code
+
