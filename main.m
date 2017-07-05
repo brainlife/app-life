@@ -31,7 +31,7 @@ out.life = [];
 %used to visualize result on web
 savejson('out',  out,      'life_results.json');
 
+system('echo 0 > finished');
 disp('all done')
-%system('echo 0 > finished');
 
 end

@@ -30,7 +30,6 @@ else
 	exit 1
 fi
 EOT
-
     exit
 
 fi
