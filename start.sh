@@ -5,7 +5,9 @@ if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 
 echo "clean up from previous run"
 rm -f products.json
-rm -f finished 
+
+# Commented out because I want it to be assumed that if the finished file is there, so are the files (that I will copy manually)
+#rm -f finished 
 
 #########################################################################################
 ##
