@@ -16,40 +16,40 @@ if [ -f finished ]; then
     fi
 fi
 
-# if [ -f jobid ]; then
-#     jobid=`cat jobid`
-#     jobstate=`qstat -f $jobid | grep job_state | cut -b17`
-#     if [ -z $jobstate ]; then
-#         echo "Job removed before completing - maybe timed out?" 
-#         exit 2
-#     fi
-#     if [ $jobstate == "Q" ]; then
-#         echo "Waiting in the queue"
-#         eststart=`showstart $jobid | grep start`
-#         #curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"Waiting in the PBS queue : $eststart\"}" $PROGRESS_URL
-#         exit 0
-#     fi
-#     if [ $jobstate == "R" ]; then
-#         echo "Running"
-#         exit 0
-#     fi
-#     if [ $jobstate == "H" ]; then
-#         echo "Job held.. waiting"
-#         exit 0 
-#     fi
+if [ -f jobid ]; then
+    jobid=`cat jobid`
+    jobstate=`qstat -f $jobid | grep job_state | cut -b17`
+    if [ -z $jobstate ]; then
+        echo "Job removed before completing - maybe timed out?" 
+        exit 2
+    fi
+    if [ $jobstate == "Q" ]; then
+        echo "Waiting in the queue"
+        eststart=`showstart $jobid | grep start`
+        #curl -X POST -H "Content-Type: application/json" -d "{\"msg\":\"Waiting in the PBS queue : $eststart\"}" $PROGRESS_URL
+        exit 0
+    fi
+    if [ $jobstate == "R" ]; then
+        echo "Running"
+        exit 0
+    fi
+    if [ $jobstate == "H" ]; then
+        echo "Job held.. waiting"
+        exit 0 
+    fi
 
-#     #assume failed for all other state
-#     echo "Jobs failed - PBS job state: $jobstate"
-#     exit 2
-# fi
+    #assume failed for all other state
+    echo "Jobs failed - PBS job state: $jobstate"
+    exit 2
+fi
 
-# if [ -f pid ]; then
-#     #echo "assume to be running locally"
-#     tail -1 stdout.log
-#     exit 0
-# fi
+if [ -f pid ]; then
+    #echo "assume to be running locally"
+    tail -1 stdout.log
+    exit 0
+fi
 
-echo "Copied files not found"
+echo "can't determine the status!"
 exit 3
 
 
