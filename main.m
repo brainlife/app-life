@@ -19,16 +19,16 @@ config = loadjson('config.json')
 
 [ fe, out ] = life(config);
 
-fprintf('number of original tracks	: %d\n', length(fe.fg.fibers));
-non_zero = length(find(fe.life.fit.weights > 0));
-fprintf('number of non-0 weight tracks	: %d (%f)\n', non_zero, non_zero / length(fe.fg.fibers)*100);
+out.stats.input_tracks = length(fe.fg.fibers);
+out.stats.non0_tracks = length(find(fe.life.fit.weights > 0));
+fprintf('number of original tracks	: %d\n', out.stats.input_tracks);
+fprintf('number of non-0 weight tracks	: %d (%f)\n', out.stats.non0_tracks, out.stats.non0_tracks / out.stats.input_tracks*100);
 
 disp('writing outputs')
 save('output_fe.mat','fe', '-v7.3');
 
-out.life = [];
-
 %used to visualize result on web
+out.life = [];
 savejson('out',  out,      'life_results.json');
 
 system('echo 0 > finished');
