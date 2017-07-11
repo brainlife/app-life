@@ -17,8 +17,7 @@ if [ $ENV == "SINGULARITY" ]; then
     echo $! > pid
     
 cat <<EOT > _run.sh
-#time singularity run docker://brainlife/life
-time singularity run /usr/local/brainlife_life.img
+time singularity run /usr/local/images/brainlife_life.img
 
 #check for output files
 if [ -s output_fe.mat ];
