@@ -4,11 +4,12 @@
 echo "publishing image to hcp singularity /images directory"
 docker run \
 	-v /var/run/docker.sock:/var/run/docker.sock \
-	-v /mnt/auto/soft/cle5/singularity/images:/output \
+	-v /usr/local/images:/output \
 	--privileged -t --rm \
 	singularityware/docker2singularity \
 	brainlife/life
 
+#-v /mnt/auto/soft/cle5/singularity/images:/output \
 
 #sudo singularity create -s 7200 life.img
 #sudo singularity import life.img docker://brainlife/life

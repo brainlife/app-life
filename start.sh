@@ -6,6 +6,7 @@ if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 echo "clean up from previous run"
 rm -f products.json
 rm -f finished 
+rm -f pid
 
 #########################################################################################
 ##
@@ -13,8 +14,6 @@ rm -f finished
 ## 
 
 if [ $ENV == "SINGULARITY" ]; then
-    nohup bash _run.sh > stdout.log 2> stderr.log &
-    echo $! > pid
     
 cat <<EOT > _run.sh
 time singularity run /usr/local/images/brainlife_life.img
@@ -29,8 +28,10 @@ else
 	exit 1
 fi
 EOT
-    exit
 
+    chmod +x _run.sh
+    nohup ./_run.sh > stdout.log 2> stderr.log & echo $! > pid
+    exit
 fi
 
 #########################################################################################
@@ -118,3 +119,6 @@ EOT
 
 jobid=`qsub task.pbs`
 echo $jobid > jobid
+echo "submitted $jobid"
+
+

@@ -44,9 +44,14 @@ if [ -f jobid ]; then
 fi
 
 if [ -f pid ]; then
-    #echo "assume to be running locally"
-    tail -1 stdout.log
-    exit 0
+    if ps -p $(cat pid) > /dev/null
+    then
+	    tail -1 stdout.log
+	    exit 0
+    else
+	    echo "no longer running but didn't finish"
+	    exit 1
+    fi
 fi
 
 echo "can't determine the status!"
