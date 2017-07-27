@@ -45,7 +45,7 @@ if [ $HPC == "KARST" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+#PBS -l walltime=10:00:00
 EOT
 fi
 
@@ -54,7 +54,7 @@ if [ $HPC == "CARBONATE" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16
-#PBS -l walltime=3:00:00
+#PBS -l walltime=6:00:00
 EOT
 fi
 
@@ -62,7 +62,7 @@ if [ $HPC == "BIGRED2" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+#PBS -l walltime=8:00:00
 #PBS -l gres=ccm
 #PBS -m abe
 EOT
