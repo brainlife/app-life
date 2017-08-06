@@ -6,6 +6,7 @@ if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 echo "clean up from previous run"
 rm -f products.json
 rm -f finished 
+rm -f pid
 
 #########################################################################################
 ##
@@ -13,12 +14,9 @@ rm -f finished
 ## 
 
 if [ $ENV == "SINGULARITY" ]; then
-    nohup bash _run.sh > stdout.log 2> stderr.log &
-    echo $! > pid
     
 cat <<EOT > _run.sh
-#time singularity run docker://brainlife/life
-time singularity run /usr/local/brainlife_life.img
+time singularity run /usr/local/images/brainlife_life.img
 
 #check for output files
 if [ -s output_fe.mat ];
@@ -30,8 +28,10 @@ else
 	exit 1
 fi
 EOT
-    exit
 
+    chmod +x _run.sh
+    nohup ./_run.sh > stdout.log 2> stderr.log & echo $! > pid
+    exit
 fi
 
 #########################################################################################
@@ -45,7 +45,7 @@ if [ $HPC == "KARST" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+#PBS -l walltime=10:00:00
 EOT
 fi
 
@@ -54,7 +54,7 @@ if [ $HPC == "CARBONATE" ]; then
 #!/bin/bash
 ##PBS -q preempt
 #PBS -l nodes=1:ppn=16
-#PBS -l walltime=3:00:00
+#PBS -l walltime=6:00:00
 EOT
 fi
 
@@ -62,7 +62,7 @@ if [ $HPC == "BIGRED2" ]; then
     cat <<EOT > task.pbs
 #!/bin/bash
 #PBS -l nodes=1:ppn=16:dc2
-#PBS -l walltime=3:00:00
+#PBS -l walltime=8:00:00
 #PBS -l gres=ccm
 #PBS -m abe
 EOT
@@ -119,3 +119,6 @@ EOT
 
 jobid=`qsub task.pbs`
 echo $jobid > jobid
+echo "submitted $jobid"
+
+
