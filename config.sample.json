@@ -1,10 +1,7 @@
 {
-	"t1": "/input/sub-FP/anatomy/t1.nii.gz",
-	"track": "/input/sub-FP/tractography/run01_fliprot_aligned_trilin_csd_lmax10_wm_SD_PROB-NUM01-500000.tck",
-	"dwi": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz",
-	"bvecs": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvecs",
-	"bvals": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.bvals",
-        "life_discretization": 360,
-        "num_iterations": 100
+"track": "/input/sub-FP/tractography/run01_fliprot_aligned_trilin_csd_lmax10_wm_SD_PROB-NUM01-500000.tck",
+"dwi": "/input/sub-FP/dwi/run01_fliprot_aligned_trilin.nii.gz",
+"life_discretization": 360,
+"num_iterations": 100
 }
 
