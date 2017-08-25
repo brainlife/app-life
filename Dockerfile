@@ -1,8 +1,10 @@
-FROM brainlife/mcr:centos6-r2017a
+#FROM brainlife/mcr:centos6-r2017a
+FROM brainlife/mcr:centos6-r2016a
+
 MAINTAINER Soichi Hayashi <hayashis@iu.edu>
 
 #for openmp
-RUN yum -y update && yum install -y libgomp libXext libXt libXt
+RUN yum -y update && yum install -y libgomp 
 
 ADD /msa /msa
 
