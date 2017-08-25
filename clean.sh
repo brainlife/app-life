@@ -17,3 +17,4 @@ rm output_fe.mat
 rm output_fg.pdb
 rm pid
 rm *.log
+rm _run.sh
