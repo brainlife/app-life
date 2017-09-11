@@ -31,6 +31,29 @@ save('output_fe.mat','fe', '-v7.3');
 out.life = [];
 savejson('out',  out,      'life_results.json');
 
+%% for visualizing the tracks in viewer
+% Extract the fascicles
+fg = feGet(fe,'fibers acpc');
+
+% Extract the fascicle weights from the fe structure
+% Dependency "encode".
+w = feGet(fe,'fiber weights');
+
+% Eliminate the fascicles with non-zero entries
+% Dependency "vistasoft"
+fg = fgExtract(fg, w > 0, 'keep');
+
+fg_sub = fg;
+fg_sub.fibers = fg.fibers(1:10:end,:);
+
+connectome.name = 'subsampled (x10) pos. weighted life output';
+connectome.coords = fg_sub.fibers;
+connectome.color = [0.2052473684,0.2466526316,0.6930631579]; 
+
+mkdir('tracts')
+savejson('', connectome, fullfile('tracts', 'subsampledtracts.json'));
+
+
 system('echo 0 > finished');
 disp('all done')
 
