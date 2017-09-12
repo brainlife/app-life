@@ -1,10 +1,10 @@
-#FROM brainlife/mcr:centos6-r2017a
 FROM brainlife/mcr:centos6-r2016a
+#FROM brainlife/mcr:centos6-r2017a
 
 MAINTAINER Soichi Hayashi <hayashis@iu.edu>
 
 #for openmp
-RUN yum -y update && yum install -y libgomp 
+RUN yum -y update && yum install -y libgomp
 
 ADD /msa /msa
 
@@ -13,6 +13,7 @@ WORKDIR /output
 
 #http://singularity.lbl.gov/docs-docker#be-practices
 RUN ldconfig
+#RUN /msa/main || true
 
 ENTRYPOINT ["/msa/main"] 
 
