@@ -11,9 +11,9 @@ ADD /msa /msa
 #we want all output to go here (config.json should also go here)
 WORKDIR /output
 
+ENTRYPOINT ["/msa/main"] 
+
 #http://singularity.lbl.gov/docs-docker#be-practices
 RUN ldconfig
-#RUN /msa/main || true
 
-ENTRYPOINT ["/msa/main"] 
 
