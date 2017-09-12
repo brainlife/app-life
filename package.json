@@ -1,6 +1,6 @@
 {
-  "name": "sca-service-life",
-  "version": "1.0.0",
+  "name": "app-life",
+  "version": "1.2.0",
   "description": "run life demo application",
   "directories": {
     "test": "test"
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/soichih/sca-service-life.git"
+    "url": "https://github.com/brain-life/app-life.git"
   },
   "author": "Soichi Hayashi <hayashis@iu.edu>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/soichih/sca-service-life/issues"
+    "url": "https://github.com/brain-life/app-life/issues"
   },
-  "homepage": "https://github.com/soichih/sca-service-life#readme"
+  "homepage": "https://github.com/brain-life/app-life#readme"
 }
