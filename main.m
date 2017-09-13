@@ -48,6 +48,7 @@ fg_sub.fibers = fg.fibers(1:10:end,:);
 
 connectome.name = 'subsampled (x10) pos. weighted life output';
 connectome.coords = fg_sub.fibers;
+connectome.weights = w(1:10:end,:);
 connectome.color = [0.2052473684,0.2466526316,0.6930631579]; 
 
 mkdir('tracts')
