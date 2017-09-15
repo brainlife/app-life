@@ -8,10 +8,29 @@ rm -f products.json
 rm -f finished 
 rm -f pid
 
-#########################################################################################
-##
-## Run as docker container on VM
-## 
+if [ $ENV == "SLURM" ]; then
+    
+cat <<EOT > _run.sh
+#!/bin/bash
+#export OMP_NUM_THREADS=16 doesn't seem to increase cpu usage beyond 700%
+srun singularity run docker://brainlife/life
+
+#check for output files
+if [ -s output_fe.mat ];
+then
+	echo 0 > finished
+else
+	echo "output_fe.mat missing"
+	echo 1 > finished
+	exit 1
+fi
+EOT
+    chmod +x _run.sh
+    jobid=$(sbatch _run.sh | cut -d' ' -f4)
+    echo $jobid > slurmjobid
+    echo "submitted $jobid"
+    exit
+fi
 
 if [ $ENV == "SINGULARITY" ]; then
     
@@ -28,7 +47,6 @@ else
 	exit 1
 fi
 EOT
-
     chmod +x _run.sh
     nohup ./_run.sh > stdout.log 2> stderr.log & echo $! > pid
     exit

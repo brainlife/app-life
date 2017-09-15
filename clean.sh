@@ -1,3 +1,4 @@
+#!/bin/bash
 rm app-life.*
 rm finished
 rm jobid*

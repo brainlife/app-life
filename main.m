@@ -44,10 +44,11 @@ w = feGet(fe,'fiber weights');
 fg = fgExtract(fg, w > 0, 'keep');
 
 fg_sub = fg;
-fg_sub.fibers = fg.fibers(1:10:end,:);
+fg_sub.fibers = round(fg.fibers(1:10:end,:), 4);
 
 connectome.name = 'subsampled (x10) pos. weighted life output';
 connectome.coords = fg_sub.fibers;
+connectome.weights = w(1:10:end,:);
 connectome.color = [0.2052473684,0.2466526316,0.6930631579]; 
 
 mkdir('tracts')
