@@ -44,7 +44,9 @@ w = feGet(fe,'fiber weights');
 fg = fgExtract(fg, w > 0, 'keep');
 
 fg_sub = fg;
-fg_sub.fibers = round(fg.fibers(1:10:end,:), 4);
+cell2mat(fg.fibers')
+fg_sub.fibers = fg.fibers(1:10:end,:);
+fg_sub.fibers = cellfun(@(x), round(x,4), fg_sub.fibers)
 
 connectome.name = 'subsampled (x10) pos. weighted life output';
 connectome.coords = fg_sub.fibers;
