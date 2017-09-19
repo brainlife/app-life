@@ -3,7 +3,7 @@ function [] = main()
 
 switch getenv('ENV')
 case 'IUHPC'
-    disp('loading paths (HPC) - mexpro')
+    disp('loading paths (HPC)')
     addpath(genpath('/N/u/brlife/git/encode'))
     addpath(genpath('/N/u/brlife/git/vistasoft'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
