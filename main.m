@@ -4,9 +4,9 @@ function [] = main()
 switch getenv('ENV')
 case 'IUHPC'
     disp('loading paths (HPC) - mexpro')
-    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
+    addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/brlife/git/vistasoft'))
+    addpath(genpath('/N/u/brlife/git/jsonlab'))
 case 'VM'
     disp('loading paths (VM)')
     addpath(genpath('/usr/local/encode-mexed'))
@@ -44,7 +44,7 @@ w = feGet(fe,'fiber weights');
 fg = fgExtract(fg, w > 0, 'keep');
 
 fg_sub = fg;
-cell2mat(fg.fibers')
+cell2mat(fg.fibers');
 fg_sub.fibers = fg.fibers(1:10:end,:);
 fg_sub.fibers = cellfun(@(x) round(x,4), fg_sub.fibers, 'UniformOutput', false);
 
