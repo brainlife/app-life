@@ -4,10 +4,9 @@ function [] = main()
 switch getenv('ENV')
 case 'IUHPC'
     disp('loading paths (HPC) - mexpro')
-    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
-    %addpath(genpath('/N/u/hayashis/BigRed2/git/encode-batch'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
+    addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/brlife/git/vistasoft'))
+    addpath(genpath('/N/u/brlife/git/jsonlab'))
 case 'VM'
     disp('loading paths (VM)')
     addpath(genpath('/usr/local/encode-mexed'))
