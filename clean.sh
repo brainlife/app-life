@@ -20,3 +20,4 @@ rm pid
 rm *.log
 rm _run.sh
 rm -rf tracts
+rm task.pbs
