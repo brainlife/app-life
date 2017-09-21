@@ -17,12 +17,8 @@ end
 % load my own config.json
 config = loadjson('config.json')
 
-% construct aligned dwi path
-%dtiinit_config = loadjson(fullfile(config.dtiinit,'product.json'))
-%aligned_dwi = fullfile(config.dtiinit, dtiinit_config.dt6.files.alignedDwRaw)
-
 disp('loading dt6.mat')
-dt6 = load(fullfile(config.dtiinit,'dti/dt6.mat'))
+dt6 = load(config.dt6)
 aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
 
 [ fe, out ] = life(config, aligned_dwi);
