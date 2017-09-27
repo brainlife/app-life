@@ -26,7 +26,7 @@ else
 fi
 EOT
     chmod +x _run.sh
-    jobid=$(sbatch -c 8 _run.sh | cut -d' ' -f4)
+    jobid=$(sbatch -c 6 _run.sh | cut -d' ' -f4)
     echo $jobid > slurmjobid
     echo "submitted $jobid"
     exit
