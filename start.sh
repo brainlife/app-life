@@ -3,10 +3,10 @@
 #allows test execution
 if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 
-echo "clean up from previous run"
-rm -f products.json
-rm -f finished 
-rm -f pid
+#echo "clean up from previous run"
+#rm -f products.json
+#rm -f finished 
+#rm -f pid
 
 if [ $ENV == "SLURM" ]; then
     
@@ -88,9 +88,15 @@ fi
 
 #common bits on all systems
 cat <<EOT >> task.pbs
-#PBS -N app-life
+#PBS -N life
 #PBS -V
+#PBS -o stdout.\$PBS_JOBID.log
+#PBS -e stderr.\$PBS_JOBID.log
+
 [ \$PBS_O_WORKDIR ] && cd \$PBS_O_WORKDIR
+
+echo "starting matlab"
+
 EOT
 
 #create pbs script

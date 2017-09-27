@@ -1,0 +1,7 @@
+{
+"dtiinit": "/N/u/hayashis/Karst/testdata/108323/dtiinit/.",
+"track": "/N/u/hayashis/Karst/testdata/108323/track/track.tck",
+"life_discretization": 360,
+"num_iterations": 10,
+"test": false
+}

@@ -59,7 +59,7 @@ if [ -f jobid ]; then
     fi
     if [ $jobstate == "R" ]; then
 	subid=$(cat jobid | cut -d '.' -f 1)
-	logname="app-life.o$subid"
+	logname="stdout.$subid.*.log"
 	tail -1 $logname
 
         exit 0

@@ -3,10 +3,10 @@ function [] = main()
 
 switch getenv('ENV')
 case 'IUHPC'
-    disp('loading paths (HPC) - mexpro')
-    addpath(genpath('/N/u/hayashis/BigRed2/git/encode-mexed'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/vistasoft'))
-    addpath(genpath('/N/u/hayashis/BigRed2/git/jsonlab'))
+    disp('loading paths (HPC)')
+    addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/brlife/git/vistasoft'))
+    addpath(genpath('/N/u/brlife/git/jsonlab'))
 case 'VM'
     disp('loading paths (VM)')
     addpath(genpath('/usr/local/encode-mexed'))
@@ -17,7 +17,11 @@ end
 % load my own config.json
 config = loadjson('config.json')
 
-[ fe, out ] = life(config);
+disp('loading dt6.mat')
+dt6 = load(fullfile(config.dtiinit, '/dti/dt6.mat'))
+aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
+
+[ fe, out ] = life(config, aligned_dwi);
 
 out.stats.input_tracks = length(fe.fg.fibers);
 out.stats.non0_tracks = length(find(fe.life.fit.weights > 0));
@@ -44,16 +48,16 @@ w = feGet(fe,'fiber weights');
 fg = fgExtract(fg, w > 0, 'keep');
 
 fg_sub = fg;
-fg_sub.fibers = round(fg.fibers(1:10:end,:), 4);
+cell2mat(fg.fibers');
+fg_sub.fibers = fg.fibers(1:10:end,:);
+fg_sub.fibers = cellfun(@(x) round(x,4), fg_sub.fibers, 'UniformOutput', false);
 
 connectome.name = 'subsampled (x10) pos. weighted life output';
 connectome.coords = fg_sub.fibers;
 connectome.weights = w(1:10:end,:);
-connectome.color = [0.2052473684,0.2466526316,0.6930631579]; 
 
 mkdir('tracts')
 savejson('', connectome, fullfile('tracts', 'subsampledtracts.json'));
-
 
 system('echo 0 > finished');
 disp('all done')

@@ -1,5 +1,5 @@
 #!/bin/bash
-rm app-life.*
+rm std*.log
 rm finished
 rm jobid*
 rm final_jobid
@@ -19,3 +19,5 @@ rm output_fg.pdb
 rm pid
 rm *.log
 rm _run.sh
+rm -rf tracts
+rm task.pbs
