@@ -3,10 +3,7 @@
 #allows test execution
 if [ -z $SERVICE_DIR ]; then export SERVICE_DIR=`pwd`; fi
 
-#echo "clean up from previous run"
-#rm -f products.json
-#rm -f finished 
-#rm -f pid
+rm -f finished 
 
 if [ $ENV == "SLURM" ]; then
     
