@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -l nodes=1:ppn=6:dc2
+#PBS -l ppn=6
 #PBS -l walltime=10:00:00
 
 #create pbs script
