@@ -6,7 +6,7 @@
 if [ `which singularity` ]
 then
     echo "running via singularity"
-    time srun singularity run docker://brainlife/life
+    time singularity run docker://brainlife/life
 else
     [ `which module` ] && module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
