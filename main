@@ -3,7 +3,7 @@
 #PBS -l ppn=6
 #PBS -l walltime=10:00:00
 
-if [ `which singularity`]
+if [ `which singularity` ]
 then
     echo "running via singularity"
     time srun singularity run docker://brainlife/life
@@ -11,7 +11,7 @@ else
     [ `which module` ] && module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
 
-    if [ `which ccmrun`]
+    if [ `which ccmrun` ]
     then
         echo "running matlab via ccmrun"
         time ccmrun matlab -nodisplay -nosplash -r main
