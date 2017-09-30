@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#PBS -l nodes=1:ppn=6:dc2
+#PBS -l walltime=10:00:00
+
+#create pbs script
+if [ $HPC == "KARST" ]; then
+    module load matlab
+    export MATLABPATH=$MATLABPATH:$PWD
+    time matlab -nodisplay -nosplash -r main
+fi
+
+if [ $HPC == "CARBONATE" ]; then
+    module load matlab
+    export MATLABPATH=$MATLABPATH:$PWD
+    time matlab -nodisplay -nosplash -r main
+fi
+
+if [ $HPC == "BIGRED2" ]; then
+    module load matlab ccm
+    export MATLABPATH=$MATLABPATH:$PWD
+    time ccmrun matlab -nodisplay -nosplash -r main
+fi
+
+if [ $ENV == "SLURM" ]; then
+    echo "running via singularity"
+    time srun singularity run docker://brainlife/life
+fi
+
+#make sure output_fe.mat exists
+if [ ! -s output_fe.mat ];
+then
+	echo "output_fe.mat missing"
+	exit 1
+fi
+
+
