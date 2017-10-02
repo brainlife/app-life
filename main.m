@@ -49,14 +49,13 @@ fg = fgExtract(fg, w > 0, 'keep');
 w = w(w>0)';
 
 %cell2mat(fg.fibers');
-%fibers = fg.fibers(1:10:end);
-fibers = fg.fibers;
+fibers = fg.fibers(1:5:end);
 fibers = cellfun(@(x) round(x,3), fibers, 'UniformOutput', false);
 
 connectome.name = 'subsampled (x10) pos. weighted life output';
 connectome.coords = fibers';
-%connectome.weights = w(1:10:end);
-connectome.weights = w;
+connectome.weights = w(1:5:end);
+%connectome.weights = w;
 
 mkdir('tracts')
 savejson('', connectome, fullfile('tracts', 'subsampledtracts.json'));
