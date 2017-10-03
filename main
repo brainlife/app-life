@@ -13,7 +13,7 @@ else
 
     if [ `which ccmrun` ]
     then
-        echo "running matlab via ccmrun"
+        echo "running matlab via ccmrun - on bigred2"
         time ccmrun matlab -nodisplay -nosplash -r main
     else
         echo "running matlab"
