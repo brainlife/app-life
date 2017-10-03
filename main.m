@@ -49,12 +49,12 @@ fg = fgExtract(fg, w > 0, 'keep');
 w = w(w>0)';
 
 %cell2mat(fg.fibers');
-fibers = fg.fibers(1:5:end);
+fibers = fg.fibers(1:3:end);
 fibers = cellfun(@(x) round(x,3), fibers, 'UniformOutput', false);
 
-connectome.name = 'subsampled (x10) pos. weighted life output';
+connectome.name = 'subsampled(30%). non-0 weighted life output';
 connectome.coords = fibers';
-connectome.weights = w(1:5:end);
+connectome.weights = w(1:3:end);
 %connectome.weights = w;
 
 mkdir('tracts')
