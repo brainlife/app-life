@@ -8,7 +8,7 @@ then
     echo "running via singularity"
     time singularity run docker://brainlife/life
 else
-    [ `which module` ] && module load matlab ccm
+    module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
 
     if [ `which ccmrun` ]
