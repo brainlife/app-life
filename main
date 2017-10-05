@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -l ppn=6
+#PBS -l node=1:ppn=6
 #PBS -l walltime=10:00:00
 
 if [ `which singularity` ]
