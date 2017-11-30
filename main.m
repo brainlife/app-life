@@ -18,7 +18,7 @@ end
 config = loadjson('config.json')
 
 disp('loading dt6.mat')
-dt6 = load(fullfile(config.dtiinit, '/dti/dt6.mat'))
+dt6 = loadjson(fullfile(config.dtiinit, 'dt6.json'))
 aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
 
 [ fe, out ] = life(config, aligned_dwi);
