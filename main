@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -l nodes=1:ppn=8:vmem=8gb
+#PBS -l nodes=1:ppn=8:vmem=8000
 #PBS -l walltime=10:00:00
 
 if [ `which singularity` ]
