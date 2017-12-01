@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#PBS -l nodes=1:ppn=8:vmem=8000
+#PBS -l nodes=1:ppn=8
 #PBS -l walltime=10:00:00
 
 if [ `which singularity` ]
@@ -10,7 +10,7 @@ then
 else
     module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
-    export MAXMEM=8589934592 
+    export MAXMEM=8000000000
 
     if [ `which ccmrun` ]
     then
