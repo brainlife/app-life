@@ -2,7 +2,7 @@
 
 ##slurm2 only has 6 cpus
 #PBS -l nodes=1:ppn=6
-#PBS -l vmem=8gb
+#PBS -l vmem=16gb
 #PBS -l walltime=10:00:00
 
 if [ `which singularity` ]
@@ -12,7 +12,7 @@ then
 else
     module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
-    export MAXMEM=8000000000
+    export MAXMEM=16000000
 
     if [ `which ccmrun` ]
     then
