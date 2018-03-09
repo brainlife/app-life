@@ -21,3 +21,6 @@ rm *.log
 rm _run.sh
 rm -rf tracts
 rm task.pbs
+rm *.err
+rm exit-code
+rm _main
