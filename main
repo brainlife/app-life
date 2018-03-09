@@ -8,8 +8,9 @@
 if [ `which singularity` ]
 then
     echo "running via singularity"
-    time singularity run docker://brainlife/life
+    time singularity run docker://brainlife/life ./compiled/main
 else
+    echo "running native matlab"
     module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
     export MAXMEM=16000000

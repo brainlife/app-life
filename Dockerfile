@@ -8,13 +8,13 @@ MAINTAINER Soichi Hayashi <hayashis@iu.edu>
 #RUN yum -y update && yum install -y libgomp
 RUN apt-get -qq install -y libgomp1
 
-ADD /msa-r2017a /app
+#ADD /msa-r2017a /app
 
 #we want all output to go here (config.json should also go here)
 WORKDIR /output
 
 #http://singularity.lbl.gov/docs-docker#be-practices
-RUN ldconfig
+RUN ldconfig && mkdir -p /N/u /N/home /N/dc2 /N/soft
 
 ENTRYPOINT ["/app/main"] 
 
