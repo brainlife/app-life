@@ -31,7 +31,7 @@ fprintf('number of original tracks	: %d\n', out.stats.input_tracks);
 fprintf('number of non-0 weight tracks	: %d (%f)\n', out.stats.non0_tracks, out.stats.non0_tracks / out.stats.input_tracks*100);
 
 disp('checking output')
-if isequal(size(fe.life.fit.weights), size(fe.fg.fibers))
+if ~isequal(size(fe.life.fit.weights), size(fe.fg.fibers))
     disp('output weights and fibers does not match')
     disp(['fe.life.fit.weights', num2str(size(fe.life.fit.weights))])
     disp(['fe.fg.fibers', num2str(size(fe.fg.fibers))])
