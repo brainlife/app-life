@@ -8,7 +8,8 @@
 if [ `which singularity` ]
 then
     echo "running via singularity"
-    time singularity exec -e docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
+    export MAXMEM=16000000
+    time singularity exec docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
 else
     echo "running native matlab"
     module load matlab ccm
