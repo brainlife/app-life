@@ -74,6 +74,8 @@ disp('saving product.json...')
 
 % save life output to product.json
 % create json structure...
+% out = loadjson('life_results.json');
+% out = out.out;
 mat1 = out.plot{1};
 mat2 = out.plot{2};
 
@@ -87,6 +89,7 @@ plot1.type = 'plotly';
 
 plot1.data.x = mat1.x.vals;
 plot1.data.y = mat1.y.vals;
+plot1.data = {plot1.data};
 
 plot1.layout.title = mat1.title;
 
@@ -104,6 +107,7 @@ plot2.type = 'plotly';
 
 plot2.data.x = mat2.x.vals;
 plot2.data.y = mat2.y.vals;
+plot2.data = {plot2.data};
 
 plot2.layout.xaxis = struct;
 plot2.layout.xaxis.title = mat2.x.label;
