@@ -1,4 +1,3 @@
-
 function [] = main()
 
 if ~isdeployed
@@ -63,9 +62,6 @@ mat1 = out.plot(1);
 mat2 = out.plot(2);
 
 plot1 = struct;
-plot2 = struct;
-textual_output = struct;
-
 plot1.data = struct;
 plot1.layout = struct;
 plot1.type = 'plotly';
@@ -85,10 +81,11 @@ plot1.layout.yaxis = struct;
 plot1.layout.yaxis.title = mat1.y.label;
 plot1.layout.yaxis.type = mat1.y.scale;
 
+plot2 = struct;
 plot2.data = struct;
 plot2.layout = struct;
 plot2.type = 'plotly';
-plot1.name = mat2.title;
+plot2.name = mat2.title;
 
 plot2.data.x = mat2.x.vals;
 plot2.data.y = mat2.y.vals;
@@ -102,15 +99,33 @@ plot2.layout.yaxis = struct;
 plot2.layout.yaxis.title = mat2.y.label;
 plot2.layout.yaxis.type = mat2.y.scale;
 
-textual_output.type = 'info';
-textual_output.msg = strcat('Fibers with non-0 evidence:', {' '}, ...
-    num2str(out.stats.non0_tracks), ...
-    ' out of', {' '}, ...
-    num2str(out.stats.input_tracks), ...
-    ' total tracks');
-textual_output.msg = textual_output.msg{1};
+plot3 = struct;
+plotdata = loadjson('plotdata.json');
+plot3.data = plotdata.data;
+plot3.layout = plotdata.layout;
+plot3.type = 'plotly';
+plot3.name = 'Connectome Evaluation';
+marker = struct;
+marker.mode = 'markers';
+marker.name = 'Your Data';
+marker.x = {0.3434};
+marker.y = {10};
+marker.marker = struct;
+marker.marker.sizemode = 'area';
+marker.marker.size = 20;
+marker.marker.opacity = 0.9;
+marker.marker.color = '#008cba';
+plot3.data{end+1} = marker;
 
-product_json = {plot1, plot2, textual_output};
+textual_output = struct;
+textual_output.type = 'info';
+textual_output.msg = strcat('Fibers with non-0 evidence: ', ...
+    num2str(out.stats.non0_tracks), ' out of ', ...
+    num2str(out.stats.input_tracks), ' total tracks (', ...
+    num2str(out.stats.non0_tracks/out.stats.input_tracks*100), '% -- it should be between 20%-30%)');
+%textual_output.msg = textual_output.msg{1};
+
+product_json = {plot1, plot2, plot3, textual_output};
 savejson('brainlife', product_json, 'product.json');
 
 disp('all done')
