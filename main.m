@@ -32,52 +32,35 @@ fprintf('number of non-0 weight tracks	: %d (%f)\n', out.stats.non0_tracks, out.
 
 disp('checking output')
 if ~isequal(size(fe.life.fit.weights), size(fe.fg.fibers))
-    disp('output weights and fibers does not match')
+    disp('output weights and fibers does not match.. terminating')
     disp(['fe.life.fit.weights', num2str(size(fe.life.fit.weights))])
     disp(['fe.fg.fibers', num2str(size(fe.fg.fibers))])
     exit;
 end
 
-disp('writing outputs')
+disp('writing output_fe.mat')
 save('output_fe.mat','fe', '-v7.3');
 
-%used to visualize result on web
-out.life = [];
-savejson('out',  out,      'life_results.json');
-
-%% for visualizing the tracks in viewer
-% Extract the fascicles
+disp('creating subsampledtracts.json for visualization');
 fg = feGet(fe,'fibers acpc');
-
-% Extract the fascicle weights from the fe structure
-% Dependency "encode".
 w = feGet(fe,'fiber weights');
-
-% Eliminate the fascicles with non-zero entries
-% Dependency "vistasoft"
 fg = fgExtract(fg, w > 0, 'keep');
 w = w(w>0)';
-
-%cell2mat(fg.fibers');
 fibers = fg.fibers(1:3:end);
 fibers = cellfun(@(x) round(x,3), fibers, 'UniformOutput', false);
-
 connectome.name = 'subsampled(30%). non-0 weighted life output';
 connectome.coords = fibers';
 connectome.weights = w(1:3:end);
-%connectome.weights = w;
-
 mkdir('tracts')
 savejson('', connectome, fullfile('tracts', 'subsampledtracts.json'));
 
-disp('saving product.json...')
+%for old stats graph (lifestats)
+out.life = [];
+savejson('out', out, 'life_results.json');
 
-% save life output to product.json
-% create json structure...
-% out = loadjson('life_results.json');
-% out = out.out;
-mat1 = out.plot{1};
-mat2 = out.plot{2};
+disp('creating product.json')
+mat1 = out.plot(1);
+mat2 = out.plot(2);
 
 plot1 = struct;
 plot2 = struct;
@@ -86,12 +69,13 @@ textual_output = struct;
 plot1.data = struct;
 plot1.layout = struct;
 plot1.type = 'plotly';
+plot1.name = mat1.title;
 
 plot1.data.x = mat1.x.vals;
 plot1.data.y = mat1.y.vals;
 plot1.data = {plot1.data};
 
-plot1.layout.title = mat1.title;
+%plot1.layout.title = mat1.title;
 
 plot1.layout.xaxis = struct;
 plot1.layout.xaxis.title = mat1.x.label;
@@ -104,6 +88,7 @@ plot1.layout.yaxis.type = mat1.y.scale;
 plot2.data = struct;
 plot2.layout = struct;
 plot2.type = 'plotly';
+plot1.name = mat2.title;
 
 plot2.data.x = mat2.x.vals;
 plot2.data.y = mat2.y.vals;
@@ -119,16 +104,15 @@ plot2.layout.yaxis.type = mat2.y.scale;
 
 textual_output.type = 'info';
 textual_output.msg = strcat('Fibers with non-0 evidence:', {' '}, ...
-                        num2str(json.out.stats.non0_tracks), ...
-                        ' out of', {' '}, ...
-                        num2str(json.out.stats.input_tracks), ...
-                        ' total tracks');
+    num2str(out.stats.non0_tracks), ...
+    ' out of', {' '}, ...
+    num2str(out.stats.input_tracks), ...
+    ' total tracks');
 textual_output.msg = textual_output.msg{1};
 
 product_json = {plot1, plot2, textual_output};
 savejson('brainlife', product_json, 'product.json');
 
-system('echo 0 > finished');
 disp('all done')
 
 end
