@@ -28,10 +28,12 @@ function add(input, dsname) {
                                 error_x: {
                                     type: 'data',
                                     //array: [ rmse_std[a] ],
+                                    color: 'black',
                                     array: rmse_std, 
-                                    //thickness: 0.5,
+                                    thickness: 0.5,
                                     //width: 1,
                                     //visible: true,
+                                    //opacity: 1,
                                 },
                                 error_y: {
                                     type: 'data',
@@ -40,11 +42,12 @@ function add(input, dsname) {
                                     //thickness: 0.5,
                                     //width: 5,
                                     //visible: true,
+                                    //opacity: 1,
                                 },
                                 marker: {
                                     sizemode: 'area',
-                                    size: 10, 
-                                    opacity: 0.8,
+                                    size: 15, 
+                                    opacity: 0.4,
                                     //color: 'hsl('+(c[1]*180)+', '+(a*0.1+0.5)+', 0.5)',
                                     //color: 'hsl('+(s*60)+', 0.5, 0.5)',
                                     color: 'rgb('+c[0]*255+', '+c[1]*255+', '+c[2]*255+')',
