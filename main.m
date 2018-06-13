@@ -108,8 +108,10 @@ plot3.name = 'Connectome Evaluation';
 marker = struct;
 marker.mode = 'markers';
 marker.name = 'Your Data';
-marker.x = { nanmean(feGet(fe,'voxrmses0norm')) };
-marker.y = { feGet(fe,'connectome density') };
+rmse = nanmean(feGet(fe,'voxrmses0norm'));
+density = feGet(fe,'connectome density');
+marker.x = { rmse };
+marker.y = { density };
 marker.marker = struct;
 marker.marker.sizemode = 'area';
 marker.marker.size = 20;
@@ -125,8 +127,15 @@ textual_output.msg = strcat('Fibers with non-0 evidence: ', ...
     num2str(out.stats.non0_tracks/out.stats.input_tracks*100), '% -- it should be between 20%-30%)');
 %textual_output.msg = textual_output.msg{1};
 
-product_json = {plot1, plot2, plot3, textual_output};
-savejson('brainlife', product_json, 'product.json');
+product_json = struct;
+product_json.brainlife = {plot1, plot2, plot3, textual_output};
+
+%also store some important info 
+product_json.life = out.stats;
+product_json.life.rmse = rmse;
+product_json.life.density = density;
+
+savejson('', product_json, 'product.json');
 
 disp('all done')
 
