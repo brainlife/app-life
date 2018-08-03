@@ -128,7 +128,7 @@ textual_output.msg = strcat('Fibers with non-0 evidence: ', ...
 %textual_output.msg = textual_output.msg{1};
 
 product_json = struct;
-product_json.brainlife = {plot1, plot2, plot3, textual_output};
+product_json.brainlife = {plot3, plot2, plot1, textual_output};
 
 %also store some important info 
 product_json.life = out.stats;
