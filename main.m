@@ -1,28 +1,36 @@
 function [] = main()
 
 if ~isdeployed
-    switch getenv('ENV')
-    case 'IUHPC'
-        disp('loading paths (HPC)')
-        addpath(genpath('/N/u/brlife/git/encode'))
-        addpath(genpath('/N/u/brlife/git/vistasoft'))
-        addpath(genpath('/N/u/brlife/git/jsonlab'))
-    case 'VM'
-        disp('loading paths (VM)')
-        addpath(genpath('/usr/local/encode-mexed'))
-        addpath(genpath('/usr/local/vistasoft'))
-        addpath(genpath('/usr/local/jsonlab'))
-    end
+    disp('loading paths (HPC)')
+    addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/brlife/git/vistasoft'))
+    addpath(genpath('/N/u/brlife/git/jsonlab'))
+
+    disp('loading paths (VM)')
+    addpath(genpath('/usr/local/encode-mexed'))
+    addpath(genpath('/usr/local/vistasoft'))
+    addpath(genpath('/usr/local/jsonlab'))
 end
 
 % load my own config.json
 config = loadjson('config.json')
 
-disp('loading dt6.mat')
-dt6 = loadjson(fullfile(config.dtiinit, 'dt6.json'))
-aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
+%disp('loading dt6.mat')
+%dt6 = loadjson(fullfile(config.dtiinit, 'dt6.json'))
+%aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
 
-[ fe, out ] = life(config, aligned_dwi);
+if isfield(config,'dtiinit')
+    disp('using dtiinit aligned dwi')
+    dt6 = loadjson(fullfile(config.dtiinit, 'dt6.json'))
+    dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
+end
+
+if isfield(config,'dwi')
+    disp('using dwi')
+    dwi = config.dwi
+end
+
+[ fe, out ] = life(config, dwi);
 
 out.stats.input_tracks = length(fe.fg.fibers);
 out.stats.non0_tracks = length(find(fe.life.fit.weights > 0));
