@@ -1,8 +1,20 @@
-[![Abcdspec-compliant](https://img.shields.io/badge/ABCD_Spec-v1.0-green.svg)](https://github.com/soichih/abcd-spec)
+[![Abcdspec-compliant](https://img.shields.io/badge/ABCD_Spec-v1.1-green.svg)](https://github.com/brain-life/abcd-spec)
+[![Run on Brainlife.io](https://img.shields.io/badge/Brainlife-bl.app.33-blue.svg)](https://doi.org/10.25663/bl.app.33)
 
 # brainlife/LiFE
 
 This service Executes Linear Fascicle Evaluation ([LiFE](https://github.com/brain-life/life-1)) - statistical evaluation for brain fasicles.
+
+### Authors
+- Soichi Hayashi (hayashis@iu.edu)
+- Franco Pestilli (franpest@indiana.edu)
+
+### Project director
+- Franco Pestilli (franpest@indiana.edu)
+
+### Funding 
+[![NSF-BCS-1734853](https://img.shields.io/badge/NSF_BCS-1734853-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1734853)
+[![NSF-BCS-1636893](https://img.shields.io/badge/NSF_BCS-1636893-blue.svg)](https://nsf.gov/awardsearch/showAward?AWD_ID=1636893)
 
 ## Running 
 
