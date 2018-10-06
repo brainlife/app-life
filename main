@@ -1,20 +1,23 @@
 #!/bin/bash
 
-##slurm2 only has 6 cpus
-#PBS -l nodes=1:ppn=6
+#PBS -l nodes=1:ppn=10
 #PBS -l vmem=20gb
 #PBS -l walltime=10:00:00
+#PBS -N life
+
+set -e
+set -x
 
 if [ `which singularity` ]
 then
     echo "running via singularity"
-    export MAXMEM=16000000
+    export MAXMEM=19000000
     time singularity exec docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
 else
     echo "running native matlab"
     module load matlab ccm
     export MATLABPATH=$MATLABPATH:$PWD
-    export MAXMEM=16000000
+    export MAXMEM=19000000
 
     if [ `which ccmrun` ]
     then
