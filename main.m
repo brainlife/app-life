@@ -1,13 +1,13 @@
 function [] = main()
 
 if ~isdeployed
-    disp('loading paths (HPC)')
+    % used to run natively (through matlab)
+    disp('loading paths')
     addpath(genpath('/N/u/brlife/git/encode'))
     addpath(genpath('/N/u/brlife/git/vistasoft'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
 
-    disp('loading paths (VM)')
-    addpath(genpath('/usr/local/encode-mexed'))
+    addpath(genpath('/usr/local/encode'))
     addpath(genpath('/usr/local/vistasoft'))
     addpath(genpath('/usr/local/jsonlab'))
 end
