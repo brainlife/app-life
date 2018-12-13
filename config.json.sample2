@@ -1,6 +1,6 @@
 {
-"dtiinit": "testdata/5b2ca1cad821b2004f93403e/.",
-"track": "testdata/5b6f1f6f7609280043277804/track.tck",
+"dtiinit": "testdata/.",
+"track": "testdata/track.tck",
 "life_discretization": 300,
 "num_iterations": 100,
 "test": false
