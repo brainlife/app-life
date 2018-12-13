@@ -8,7 +8,12 @@
 set -e
 set -x
 
-#export MAXMEM=19000000
-export MAXMEM=6000000
+export MAXMEM=19000000
 time singularity exec docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
 
+#make sure output_fe.mat exists (matlab doesn't set exit code!)
+if [ ! -s output_fe.mat ];
+then
+    echo "output_fe.mat missing"
+    exit 1
+fi
