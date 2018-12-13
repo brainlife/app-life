@@ -1,7 +1,8 @@
 {
-"dtiinit": "testdata/.",
-"track": "testdata/track.tck",
-"life_discretization": 300,
-"num_iterations": 100,
-"test": false
+    "track": "testdata/overflow/track.tck",
+    "dwi": "testdata/overflow/dwi.nii.gz",
+    "life_discretization": 360,
+        "num_iterations": 100
 }
+
+

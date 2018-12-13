@@ -3,7 +3,10 @@ function [] = main()
 if ~isdeployed
     % used to run natively (through matlab)
     disp('loading paths')
-    addpath(genpath('/N/u/brlife/git/encode'))
+
+    %addpath(genpath('/N/u/brlife/git/encode'))
+    addpath(genpath('/N/u/hayashis/git/encode'))
+
     addpath(genpath('/N/u/brlife/git/vistasoft'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
 
