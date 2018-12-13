@@ -1,7 +1,7 @@
 {
 "dtiinit": "testdata/.",
 "track": "testdata/track.tck",
-"life_discretization": 50,
-"num_iterations": 30,
+"life_discretization": 300,
+"num_iterations": 100,
 "test": false
 }
