@@ -4,8 +4,8 @@ if ~isdeployed
     % used to run natively (through matlab)
     disp('loading paths')
 
-    %addpath(genpath('/N/u/brlife/git/encode'))
-    addpath(genpath('/N/u/hayashis/git/encode'))
+    addpath(genpath('/N/u/brlife/git/encode'))
+    %addpath(genpath('/N/u/hayashis/git/encode'))
 
     addpath(genpath('/N/u/brlife/git/vistasoft'))
     addpath(genpath('/N/u/brlife/git/jsonlab'))
@@ -17,10 +17,6 @@ end
 
 % load my own config.json
 config = loadjson('config.json')
-
-%disp('loading dt6.mat')
-%dt6 = loadjson(fullfile(config.dtiinit, 'dt6.json'))
-%aligned_dwi = fullfile(config.dtiinit, dt6.files.alignedDwRaw)
 
 if isfield(config,'dtiinit')
     disp('using dtiinit aligned dwi')
