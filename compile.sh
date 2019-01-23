@@ -1,6 +1,6 @@
 #!/bin/bash
-#module load matlab/2017a
-module load matlab/2018a
+module load matlab/2017a
+#module load matlab/2018a
 
 cat > build.m <<END
 
