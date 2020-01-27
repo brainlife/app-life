@@ -5,12 +5,10 @@ if ~isdeployed
     disp('loading paths')
 
     addpath(genpath('/N/u/brlife/git/encode'))
-
-    %addpath(genpath('/N/u/brlife/git/vistasoft'))
     addpath(genpath('/N/u/hayashis/git/vistasoft'))
-
     addpath(genpath('/N/u/brlife/git/jsonlab'))
 
+    % Below old section (legacy code) to be deprecated (currently used only on VMs)
     addpath(genpath('/usr/local/encode'))
     addpath(genpath('/usr/local/vistasoft'))
     addpath(genpath('/usr/local/jsonlab'))
