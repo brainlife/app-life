@@ -9,8 +9,7 @@ set -e
 set -x
 
 export MAXMEM=19000000
-#time singularity exec docker://brainlife/mcr:2018a ./compiled/main
-time singularity exec docker://brainlife/mcr:neurodebian1604-r2017a ./compiled/main
+time singularity exec -e docker://brainlife/mcr:r2019a ./compiled/main
 
 #make sure output_fe.mat exists (matlab doesn't set exit code!)
 if [ ! -s output_fe.mat ];
