@@ -3,6 +3,32 @@
 
 # brainlife/LiFE
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Evaluates a tractogram with LiFE (Linear Fascicle Evaluation), predicting a preprocessed DWI from the streamlines of a .tck file, and outputs fascicle weights and model error.**
+
+Builds the LiFE model from the tractogram and the DWI, fits non-negative fascicle weights with the bbnnls solver, and reports the voxel-wise RMSE and the number of streamlines with non-zero weight. Use it to remove streamlines that do not contribute to predicting the diffusion signal (connectome evaluation) before further analysis. Needs a tractogram and a preprocessed DWI from the same subject, in the same space; large tractograms need substantial memory.
+
+Run it on brainlife.io: [https://doi.org/10.25663/bl.app.104](https://doi.org/10.25663/bl.app.104)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `track` | `neuro/track/tck` | yes | Whole-brain tractogram (.tck) to evaluate, in the same space as the DWI. |
+| `dwi` | `neuro/dwi` | yes | you should feed preprocessed dwi. we will add preprocessed datatype tag once we have most preprocessed dwi tagged with "preprocessed" |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `fe` | `neuro/LiFE` | LiFE model (output_fe.mat) with the fitted fascicle weights and voxel-wise RMSE, plus a subsampled JSON of the non-zero-weight streamlines for visualisation. |
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `life_discretization` | number | `360` | Number of discretised orientations used to build the LiFE fascicle model (feConnectomeInit). |
+| `num_iterations` | number | `100` | Number of iterations of the bbnnls solver used to fit the LiFE model weights. |
+
+Runtime: container `brainlife/mcr:r2019a`; 10 CPUs.
+
+<!-- brainlife-app:end -->
+
 This service Executes Linear Fascicle Evaluation ([LiFE](https://github.com/brain-life/life-1)) - statistical evaluation for brain fasicles.
 
 ### Authors
