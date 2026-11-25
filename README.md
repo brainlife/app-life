@@ -10,7 +10,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -20,27 +20,27 @@ Builds the LiFE model from the tractogram and the DWI, fits non-negative fascicl
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/track/tck` · `neuro/dwi` |
-| 📤 **Outputs** | `neuro/LiFE` |
-| 🐳 **Container** | `brainlife/mcr:r2019a` |
-| ⚙️ **Resources** | 10 CPUs |
-| 🔗 **Run it** | [doi.org/10.25663/bl.app.104](https://doi.org/10.25663/bl.app.104) |
+| **Inputs** | `neuro/track/tck` · `neuro/dwi` |
+| **Outputs** | `neuro/LiFE` |
+| **Container** | `brainlife/mcr:r2019a` |
+| **Resources** | 10 CPUs |
+| **Run it** | [doi.org/10.25663/bl.app.104](https://doi.org/10.25663/bl.app.104) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `track` | `neuro/track/tck` | yes | Whole-brain tractogram (.tck) to evaluate, in the same space as the DWI. |
 | `dwi` | `neuro/dwi` | yes | you should feed preprocessed dwi. we will add preprocessed datatype tag once we have most preprocessed dwi tagged with "preprocessed" |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
 | `fe` | `neuro/LiFE` | LiFE model (output_fe.mat) with the fitted fascicle weights and voxel-wise RMSE, plus a subsampled JSON of the non-zero-weight streamlines for visualisation. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (2)</summary>
+<summary><b>Parameters</b> (2)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -51,7 +51,7 @@ Builds the LiFE model from the tractogram and the DWI, fits non-negative fascicl
 
 <!-- brainlife-app:end -->
 
-## 🏷️ Versions on brainlife.io
+## Versions on brainlife.io
 
 Both Apps are built from the same branch and differ only in how the diffusion data are provided.
 
@@ -60,15 +60,15 @@ Both Apps are built from the same branch and differ only in how the diffusion da
 | LiFE (dwi) | `neuro/dwi` (preprocessed) | [`1.10`](https://github.com/brainlife/app-life/tree/1.10) | [doi:10.25663/bl.app.104](https://doi.org/10.25663/bl.app.104) | current |
 | LiFE with dtiInit | `neuro/dtiinit` | [`1.10`](https://github.com/brainlife/app-life/tree/1.10) | [doi:10.25663/bl.app.1](https://doi.org/10.25663/bl.app.1) | available |
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/bl.app.104](https://doi.org/10.25663/bl.app.104) (or [doi.org/10.25663/bl.app.1](https://doi.org/10.25663/bl.app.1) for a dtiInit input), choose a whole-brain `neuro/track/tck` tractogram and the preprocessed diffusion data of the same subject, in the same space, and press **Execute**.
 
 The App runs [LiFE](https://github.com/brain-life/life-1): it builds the fascicle model from the tractogram and the DWI (`life_discretization`, default 360 orientations), fits non-negative fascicle weights with the bbnnls solver (`num_iterations`, default 100), and reports the voxel-wise RMSE and the number of streamlines with non-zero weight. The result is a `neuro/LiFE` dataset. Use it to remove streamlines that do not contribute to predicting the diffusion signal (connectome evaluation) before further analysis. Large tractograms need substantial memory.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/). The compiled MATLAB code runs inside the MATLAB Runtime R2019a container.
 
@@ -90,7 +90,7 @@ You need [Singularity/Apptainer](https://apptainer.org/). The compiled MATLAB co
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 ```text
 output_fe.mat                    LiFE model (fe): fascicle weights, fit and voxel-wise RMSE
@@ -99,11 +99,11 @@ life_results.json                summary statistics (input and non-zero-weight s
 product.json                     plots and statistics shown on brainlife.io
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`output_fe.mat missing`**: the LiFE fit did not complete. Check the log; make sure the tractogram and DWI are aligned and that enough memory is available.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -113,14 +113,14 @@ product.json                     plots and statistics shown on brainlife.io
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Franco Pestilli (project director)
 - Soichi Hayashi
 
 **Contributors:** Lindsey Kitchell, Brent McPherson, Brad Caron, Ariel Rokem, Brian Wandell, Hiromasa Takemura
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -139,6 +139,6 @@ product.json                     plots and statistics shown on brainlife.io
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](LICENSE).
